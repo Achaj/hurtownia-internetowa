@@ -1,0 +1,6 @@
+.root{
+    -fx-background-image: url("mainScepepictures/mainSceneBacground.png");
+
+    -fx-background-width:100%;
+    -fx-background-height:100%;
+}

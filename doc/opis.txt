@@ -1,0 +1,33 @@
+1 egran głowny
+    -heder{
+         -info o sklepie
+         -wyszukaj
+         -login
+         -koszyk
+    }
+    -katalog produyktów
+2.Baza prodoktów
+    id
+    kategoria produktu
+    nazwa
+    produktu
+    producent
+    info--odniesienie szczgółowe
+    ilość
+    cena
+
+3.Baza użytkowików
+    login
+    hasło
+    email
+    adres
+4.rekord zamówienia
+    id
+    id-klienta
+    id-produktu onetomany 1-wielu
+
+    status-zamówienia(zamówiene zapłacone wysłane)
+
+--------------------
+gotowe kalsy
+
