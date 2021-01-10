@@ -5,17 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.entities.User;
-import main.entities.UserRepository;
-import org.hibernate.*;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.io.IOException;
 
 import static javax.persistence.Persistence.createEntityManagerFactory;
@@ -43,18 +34,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
-        launch();
 
-        User user=new User("jan@op.pl","ZAQ!2wsx","Jan","Nowak",
-                "11-111","mazury","-","2","111111111");
-        UserRepository userRepository=new UserRepository();
-        userRepository.saveUser(user);
-
-
-
-
-    }
 
 
 }

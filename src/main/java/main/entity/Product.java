@@ -1,15 +1,24 @@
-package main.entities;
+package main.entity;
 
-import javax.persistence.*;
-import java.util.Set;
-/*
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "product", schema = "public")
+public class Product implements Serializable {
+
     @Id
-    @Column(name = "product_id")
+    @Column(name = "id_product")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idProduct;
     @Column(name = "producer")
     private String producer;
     @Column(name = "model")
@@ -20,13 +29,8 @@ public class Product {
     private int quantity;
     @Column(name = "price")
     private String price;
-    @OneToMany
-    @JoinColumn(name = "product_id")
-    private Set<Product> products;
-
-
-    //constructors
-
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Product() {
     }
@@ -37,15 +41,15 @@ public class Product {
         this.info = info;
         this.quantity = quantity;
         this.price = price;
-    }
-    //getters and setter
 
-    public long getId() {
-        return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public long getProductId() {
+        return idProduct;
+    }
+
+    public void setProductId(long productId) {
+        this.idProduct = productId;
     }
 
     public String getProducer() {
@@ -88,17 +92,10 @@ public class Product {
         this.price = price;
     }
 
-    //to string
-
     @Override
     public String toString() {
-        return "Pordukt{" +
-                "id=" + id +
-                ", producer='" + producer + '\'' +
-                ", model='" + model + '\'' +
-                ", info='" + info + '\'' +
-                ", quantity=" + quantity +
-                ", price='" + price + '\'' +
-                '}';
+        return "Product{" + "productId=" + idProduct + ", producer=" + producer + ", model=" + model + ", info=" + info + ", quantity=" + quantity + ", price=" + price + '}';
     }
-}*/
+
+}
+

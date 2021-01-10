@@ -1,16 +1,17 @@
-package main.entities;
-
+package main.entity;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "user")
-
-public class User {
+@Table(name = "user", schema = "public")
+public class User implements Serializable {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private long idUser;
     @Column(name = "email", nullable = true, unique = true)
     private String email;
     @Column(name = "password", nullable = true)
@@ -29,7 +30,10 @@ public class User {
     private String numberInStreet;
     @Column(name = "phoneNumber")
     private String phoneNumber;
-
+    @Column(name = "type_user", nullable = false, columnDefinition = "varchar(255) default 'user'")
+    private String typeUser="user";
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Order> order = new ArrayList<>();
 
     public User(String email, String password, String firstName, String secondName, String zipCode, String city, String street, String numberInStreet, String phoneNumber) {
         this.email = email;
@@ -46,27 +50,12 @@ public class User {
     public User() {
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", numberInStreet='" + numberInStreet + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
-    }
-
     public long getId() {
-        return id;
+        return idUser;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idUser = id;
     }
 
     public String getEmail() {
@@ -125,6 +114,14 @@ public class User {
         this.street = street;
     }
 
+    public String getNumberInStreet() {
+        return numberInStreet;
+    }
+
+    public void setNumberInStreet(String numberInStreet) {
+        this.numberInStreet = numberInStreet;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -133,11 +130,39 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setNumberInStreet(String numberInStreet) {
-        this.numberInStreet = numberInStreet;
+    public List<Order> getOrder() {
+        return order;
     }
 
-    public String getNumberInStreet() {
-        return numberInStreet;
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
+    public String getTypeUser() {
+        return typeUser;
+    }
+
+    public void setTypeUser(String typeUser) {
+        this.typeUser = typeUser;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", numberInStreet='" + numberInStreet + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", typeUser='" + typeUser + '\'' +
+                ", order=" + order +
+                '}';
     }
 }
+
+

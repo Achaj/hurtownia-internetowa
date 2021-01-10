@@ -1,6 +1,5 @@
 package main;
 
-import main.entities.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -8,6 +7,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import main.entity.User;
+import main.entity.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -161,6 +162,7 @@ public class NewUserControls {
     }
 
     public void createNewUser(MouseEvent actionEvent) {
+
         if(validationStatus==true){
             User user=new User();
             user.setEmail(loginEmail.getText());
@@ -174,29 +176,8 @@ public class NewUserControls {
             user.setPhoneNumber(phoneNumber.getText());
             System.out.println(user.toString());
 
-            Session session = factory.openSession();
-            Transaction transaction = null;
-
-            try
-            {
-                transaction = session.beginTransaction();
-                int inserted_id = (Integer) session.save(user);
-                System.out.println("Inserted ID : " + inserted_id);
-
-                transaction.commit();
-
-            } catch (Exception e)
-            {
-                if (transaction != null)
-                {
-                    transaction.rollback();
-                }
-                //e.printStackTrace();
-                System.out.println("ERROR: " + e.getMessage());
-            } finally
-            {
-                session.close();
-            }
+            UserRepository userRepository=new UserRepository();
+               userRepository.saveUser(user);
 
         }else{
             System.out.println("musisz poprawić coś");
