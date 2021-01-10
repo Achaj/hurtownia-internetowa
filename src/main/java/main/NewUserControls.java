@@ -177,7 +177,7 @@ public class NewUserControls {
             System.out.println(user.toString());
 
             UserRepository userRepository=new UserRepository();
-               userRepository.saveUser(user);
+             userRepository.saveUser(user);
 
         }else{
             System.out.println("musisz poprawić coś");

@@ -1,5 +1,7 @@
 package main.entity;
 
+import main.EntityManagerConnection;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

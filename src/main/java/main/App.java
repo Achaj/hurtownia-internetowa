@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.entity.User;
+import main.entity.UserRepository;
 
 
 import java.io.IOException;
@@ -23,6 +25,9 @@ public class App extends Application {
         scene = new Scene(loadFXML("mainSceneShop"), 800, 600);
         stage.setScene(scene);
         stage.show();
+        UserRepository userRepository = new UserRepository();
+        User user = new User("janeko0@op.pl", "pass", "jan", "jan", "11-111", "mazury", "-", "1b","1111111111");
+        userRepository.saveUser(user);
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -34,7 +39,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-
+    
 
 
 }
