@@ -3,20 +3,15 @@ package main.entity;
 
 import java.util.List;
 
-import main.EntityManagerConnection;
-
 import javax.persistence.*;
 
 public class UserRepository {
-/*
+
     EntityManagerConnection entityManagerConnection = new EntityManagerConnection();
     EntityManagerFactory entityManagerFactory = entityManagerConnection.getEntityManagerFactory();
     EntityManager entityManager = entityManagerConnection.getEntityManager();
     EntityTransaction entityTransaction = entityManagerConnection.getEntityTransaction();
-*/
-    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DBCONNECTION");
-    private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
-    private static final EntityTransaction entityTransaction = entityManager.getTransaction();
+
 
     public User saveUser(User user) {
         entityTransaction.begin();
@@ -115,7 +110,7 @@ public class UserRepository {
     }
 
     public void closeConnectDB() {
-        entityManager.close();
+        entityManagerConnection.closeConnectDB();
     }
 }
 

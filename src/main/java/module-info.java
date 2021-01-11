@@ -12,5 +12,6 @@ module main {
     requires net.bytebuddy;
 
     opens main to javafx.fxml;
+    opens main.entity to org.hibernate.orm.core;
     exports main;
 }
