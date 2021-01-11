@@ -12,8 +12,10 @@ import main.entity.UserRepository;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class forgetPassControls {
+    private static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,30}$";
    @FXML public TextField login;
     @FXML public PasswordField password;
     @FXML public PasswordField confirmPassword;
@@ -21,7 +23,7 @@ public class forgetPassControls {
     @FXML
     public void confirmDate(ActionEvent actionEvent) throws IOException {
         System.out.println(password.getText()+"/"+confirmPassword.getText());
-        if(password.getText().equals(confirmPassword.getText())){
+        if(password.getText().equals(confirmPassword.getText())|| Pattern.matches(REGEX_PASSWORD,password.getText())){
                 UserRepository userRepository=new UserRepository();
                 User user=userRepository.getUserByEmail(login.getText());
                 userRepository.updatePasswordUserById(user.getId(), password.getText());
