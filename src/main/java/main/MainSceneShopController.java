@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import main.App;
+import main.entity.EntityManagerConnection;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +52,7 @@ public class MainSceneShopController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         comboBoxCategoryItem.setItems(COMPONENT_LIST);
     }
 

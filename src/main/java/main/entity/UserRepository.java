@@ -39,6 +39,26 @@ public class UserRepository {
         return userTypedQuery.getResultList();
 
     }
+    public User getUserByEmail(String email) {
+       // entityTransaction.begin();
+        TypedQuery<User> userTypedQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.email=: email", User.class);
+        userTypedQuery.setParameter("email", email);
+        return userTypedQuery.getResultList().get(0);
+
+    }
+    public User updatePasswordUserById(long id, String newFirsName) {
+        //entityTransaction.begin();
+        User user = findUserById(id);
+        try {
+            user.setPassword(newFirsName);
+            entityManager.merge(user);
+            entityTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityTransaction.rollback();
+        }
+        return user;
+    }
 
     public List<User> getAllUser() {
         entityTransaction.begin();

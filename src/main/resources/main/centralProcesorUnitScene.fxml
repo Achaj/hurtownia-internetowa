@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -9,25 +8,21 @@
    <children>
       <TextField layoutX="82.0" layoutY="73.0" prefHeight="25.0" prefWidth="467.0" />
       <Button layoutX="549.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Wyszukaj" />
-      <ImageView fitHeight="80.0" fitWidth="101.0" layoutX="706.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@mainScepepictures/shopping-cart.png" />
-         </image>
-      </ImageView>
       <Label alignment="CENTER" layoutX="47.0" layoutY="14.0" prefHeight="51.0" prefWidth="677.0" text="Hurtownia Sprzetu Komputerowego" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <TableView layoutX="82.0" layoutY="120.0" prefHeight="391.0" prefWidth="615.0">
+      <TableView layoutX="93.0" layoutY="120.0" prefHeight="391.0" prefWidth="615.0">
         <columns>
+            <TableColumn prefWidth="75.0" text="Typ" />
           <TableColumn prefWidth="75.0" text="Producent" />
-          <TableColumn prefWidth="102.0" text="Model" />
-            <TableColumn prefWidth="310.0" text="Info" />
-            <TableColumn minWidth="0.0" prefWidth="65.0" text="Ilość" />
-            <TableColumn prefWidth="62.0" text="Cena" />
+          <TableColumn prefWidth="198.0" text="Model" />
+            <TableColumn prefWidth="146.0" text="Info" />
+            <TableColumn minWidth="0.0" prefWidth="126.0" text="Ilość" />
+            <TableColumn minWidth="7.0" prefWidth="68.0" text="Cena" />
         </columns>
       </TableView>
-      <Button layoutX="706.0" layoutY="120.0" mnemonicParsing="false" text="Dodaj" />
+      <Button layoutX="724.0" layoutY="120.0" mnemonicParsing="false" text="Dodaj" />
    </children>
 </AnchorPane>

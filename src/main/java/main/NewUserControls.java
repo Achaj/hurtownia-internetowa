@@ -1,12 +1,10 @@
 package main;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
+import javafx.scene.paint.Color;
 import main.entity.User;
 import main.entity.UserRepository;
 import org.hibernate.Session;
@@ -14,10 +12,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class NewUserControls {
-    private static SessionFactory factory;
+
     public TextField loginEmail;
     public PasswordField passwordUser;
     public TextField firstName;
@@ -27,9 +26,10 @@ public class NewUserControls {
     public TextField street;
     public TextField phoneNumber;
     public Button CreateNewUserButton;
-    public ProgressBar progresses ;
     public TextField number;
     public PasswordField passwordConfirmUser;
+    public Label validated;
+
 
     private boolean validationStatus=false;
     private static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,30}$";
@@ -44,12 +44,16 @@ public class NewUserControls {
 
 
     public void checkEmail(ActionEvent actionEvent) {
-        if(loginEmail.getText()==null){
+        if(loginEmail.getText().equals("")){
             System.out.println("Brak adresu email");
             validationStatus=false;
+            validated.setText("Brak adresu email !");
+            validated.setTextFill(Color.RED);
         }else if(loginEmail.getText()!=null){
             validationStatus=true;
             System.out.println(" adresu email");
+            validated.setText("Email prawidłowy");
+
         }
     }
 
@@ -57,8 +61,11 @@ public class NewUserControls {
 
        if(Pattern.matches(REGEX_PASSWORD,passwordUser.getText())){
             validationStatus=true;
+           validated.setText("Hasło prawidłowe");
 
         } else{
+           validated.setText("Hasło nie prawidłowe !");
+           validated.setTextFill(Color.RED);
             System.out.println("Błąd hasła");
             validationStatus=false;
         }
@@ -68,9 +75,12 @@ public class NewUserControls {
         if(Pattern.matches(REGEX_NAME,firstName.getText())){
             validationStatus=true;
             System.out.println("dore imienia");
+            validated.setText("Imię prawidłowe");
         }else {
             System.out.println("Bład imienia");
             validationStatus=false;
+            validated.setText("Imię nie prawidłowe !");
+            validated.setTextFill(Color.RED);
         }
     }
 
@@ -79,10 +89,13 @@ public class NewUserControls {
 
            System.out.println("Dobre nazwiska");
             validationStatus=true;
+           validated.setText("Nazwisko prawidłowe");
 
         } else{
             System.out.println("Błąd nazwiska");
             validationStatus=false;
+           validated.setText("Nazwisko nie prawidłowe");
+           validated.setTextFill(Color.RED);
         }
     }
 
@@ -92,11 +105,14 @@ public class NewUserControls {
 
            System.out.println("Dobre zip code");
            validationStatus = true;
+           validated.setText("Kod Pocztowy poprawny");
        } else {
            System.out.println("Error zip code");
            validationStatus = false;
+           validated.setText("Kod Pocztowy nie poprawny");
+           validated.setTextFill(Color.RED);
        }
-       System.out.println("The zip code is: " + zipCode.getText());
+
     }
 
     public void checkCity(ActionEvent actionEvent) {
@@ -104,9 +120,12 @@ public class NewUserControls {
 
             System.out.println("Dobre City");
             validationStatus=true;
+            validated.setText("Miasto poprawne");
         }else {
             System.out.println("ERROR City");
             validationStatus=false;
+            validated.setText("Miasto nie poprawne");
+            validated.setTextFill(Color.RED);
         }
     }
 
@@ -117,10 +136,13 @@ public class NewUserControls {
 
            System.out.println("Dobra street");
             validationStatus=true;
+           validated.setText("Ulica poprawna");
         }
         else{
             System.out.println("Error street");
             validationStatus=false;
+           validated.setText("Ulica nie poprawna");
+           validated.setTextFill(Color.RED);
         }
     }
 
@@ -129,11 +151,14 @@ public class NewUserControls {
 
             System.out.println("Dobry STREET NUMBER");
             validationStatus=true;
+            validated.setText("Numer ulicy poprawny");
 
         }
         else{
             System.out.println("ERROR STREET NUMBER");
             validationStatus=false;
+            validated.setText("Numer ulicy nie poprawny");
+            validated.setTextFill(Color.RED);
         }
     }
 
@@ -142,11 +167,14 @@ public class NewUserControls {
 
             System.out.println("Dobry PHONE NUMBER");
             validationStatus=true;
+            validated.setText("Numer telefonu poprawny");
 
         }
         else{
             System.out.println("ERROR PHONE NUMBER");
             validationStatus=false;
+            validated.setText("Numer telefonu nie poprawny");
+            validated.setTextFill(Color.RED);
         }
     }
 
@@ -155,13 +183,16 @@ public class NewUserControls {
 
             System.out.println("ok CONFIRM PASS");
             validationStatus=true;
+            validated.setText("Hasła się zgadzają");
         }else{
             System.out.println("ERROR CONFIRM PASS");
             validationStatus=false;
+            validated.setText("Hasła się nie zgadzają");
+            validated.setTextFill(Color.RED);
         }
     }
 
-    public void createNewUser(MouseEvent actionEvent) {
+    public void createNewUser(MouseEvent actionEvent) throws IOException {
 
         if(validationStatus==true){
             User user=new User();
@@ -177,13 +208,19 @@ public class NewUserControls {
             System.out.println(user.toString());
 
             UserRepository userRepository=new UserRepository();
-             userRepository.saveUser(user);
+            userRepository.saveUser(user);
+            App.setRoot("loginScene");
 
         }else{
+
             System.out.println("musisz poprawić coś");
 
 
         }
     }
 
+
+    public void changeLoginScene(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("loginScene");
+    }
 }

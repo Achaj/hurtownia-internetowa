@@ -1,5 +1,6 @@
 package main;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,6 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import main.App;
+import main.entity.EntityManagerConnection;
+import main.entity.User;
+import main.entity.UserRepository;
 
 import java.io.IOException;
 
@@ -37,5 +41,21 @@ public class LoginSceneControls{
     @FXML
     public void forgetClick(MouseEvent mouseEvent)  throws IOException{
         App.setRoot("forgetPass");
+    }
+
+    public void loginDB(ActionEvent actionEvent) {
+        UserRepository userRepository=new UserRepository();
+        User user= userRepository.getUserByEmail(userEmail.getText());
+        if (user.getPassword().equals(userPassword.getText())){
+            System.out.println("zalogowano poprawnie");
+            EntityManagerConnection entityManagerConnection=new EntityManagerConnection();
+            entityManagerConnection.setCurrentUser(user);
+        }else{
+            System.out.println("nie ma takiego email lub błedne hasło");
+        }
+    }
+    @FXML
+    public void backToMainScene(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("mainSceneShop");
     }
 }

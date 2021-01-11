@@ -19,6 +19,8 @@ public class Product implements Serializable {
     @Column(name = "id_product")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idProduct;
+    @Column(name="type")
+    private String type;
     @Column(name = "producer")
     private String producer;
     @Column(name = "model")
@@ -35,7 +37,8 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(String producer, String model, String info, int quantity, String price) {
+    public Product(String type,String producer, String model, String info, int quantity, String price) {
+        this.type=type;
         this.producer = producer;
         this.model = model;
         this.info = info;
@@ -50,6 +53,14 @@ public class Product implements Serializable {
 
     public void setProductId(long productId) {
         this.idProduct = productId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getProducer() {
@@ -94,8 +105,16 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product{" + "productId=" + idProduct + ", producer=" + producer + ", model=" + model + ", info=" + info + ", quantity=" + quantity + ", price=" + price + '}';
+        return "Product{" +
+                "idProduct=" + idProduct +
+                ", type='" + type + '\'' +
+                ", producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", info='" + info + '\'' +
+                ", quantity=" + quantity +
+                ", price='" + price + '\'' +
+                ", orderItems=" + orderItems +
+                '}';
     }
-
 }
 
