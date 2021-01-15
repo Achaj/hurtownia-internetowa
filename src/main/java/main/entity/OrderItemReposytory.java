@@ -37,7 +37,7 @@ public class OrderItemReposytory {
     }
 
     /*ABY WYSZUKAC POZYCJĘ ZAMÓWIENIA TRZEBA PODAĆ ID_ORDERITEM*/
-    public OrderItem findOrderItemById(long id) {
+    public OrderItem findOrderItemById(int id) {
         OrderItem orderItem = entityManager.find(OrderItem.class, id);
         return orderItem;
     }
@@ -50,7 +50,7 @@ public class OrderItemReposytory {
     }
 
     /*Pobieranie wszystkich pozycji danego zamówienia*/
-    public List<OrderItem> getAllOrderItemsOnOneOrder(long id) {
+    public List<OrderItem> getAllOrderItemsOnOneOrder(int id) {
         entityTransaction.begin();
         TypedQuery<OrderItem> orderItemTypeQuery = entityManager.createQuery("SELECT i FROM OrderItem i WHERE i.idOrd erItem=: id", OrderItem.class);
         orderItemTypeQuery.setParameter("id", id);
@@ -58,7 +58,7 @@ public class OrderItemReposytory {
     }
 
     /*ABY ZAKUTALIZOWAĆ LICZBĘ SZTUK W ORDERITEM PODJAEMI ID_ORDERITEM ORAZ LICZBY NA JAKA MA ZAKTUALIZOWAĆ*/
-    public OrderItem updateOrderItemQuantitiById(long id, int quantity) {
+    public OrderItem updateOrderItemQuantitiById(int id, int quantity) {
         entityTransaction.begin();
         ProductReposytory productReposytory = new ProductReposytory();
         OrderItem orderItem = findOrderItemById(id);
@@ -108,7 +108,7 @@ public class OrderItemReposytory {
         return orderItem;
     }
 
-    public OrderItem updateProductOnOrderId(long idOrderItem, long idProduct) {
+    public OrderItem updateProductOnOrderId(int idOrderItem, long idProduct) {
         entityTransaction.begin();
         OrderItem orderItem = findOrderItemById(idOrderItem);
         try {
@@ -126,7 +126,7 @@ public class OrderItemReposytory {
 
 
     /* ABY USUNĄC REKORD Z ORDERITEM MUSIMY PODAC JEGO ID */
-    public void delateOrderItemById(long id) {
+    public void delateOrderItemById(int id) {
         entityTransaction.begin();
         OrderItem orderItem = findOrderItemById(id);
         entityManager.remove(orderItem);

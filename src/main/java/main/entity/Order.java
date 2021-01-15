@@ -25,7 +25,7 @@ public class Order implements Serializable  {
     @Id
     @Column(name = "id_order")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idOrder;
+    private int idOrder;
     @Column(name = "util_datetime")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
@@ -48,11 +48,11 @@ public class Order implements Serializable  {
     }
 
 
-    public long getIdOrder() {
+    public int getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(long idOrder) {
+    public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
     }
 

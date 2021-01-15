@@ -22,10 +22,11 @@ public class MainSceneShopController implements Initializable {
 
 
     public void cpuSceneChange(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("centralProcesorUnitScene");
+        App.setRoot("cpuScene");
     }
 
-    public void gpuSceneChange(MouseEvent mouseEvent) {
+    public void gpuSceneChange(MouseEvent mouseEvent) throws IOException{
+        App.setRoot("gpuScene");
     }
 
     public void motherboardSceneChange(MouseEvent mouseEvent) {

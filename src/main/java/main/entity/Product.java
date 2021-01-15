@@ -18,7 +18,7 @@ public class Product implements Serializable {
     @Id
     @Column(name = "id_product")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idProduct;
+    private int idProduct;
     @Column(name="type")
     private String type;
     @Column(name = "producer")
@@ -30,14 +30,14 @@ public class Product implements Serializable {
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "price")
-    private String price;
+    private int price;
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(String type,String producer, String model, String info, int quantity, String price) {
+    public Product(String type, String producer, String model, String info, int quantity, int price) {
         this.type=type;
         this.producer = producer;
         this.model = model;
@@ -47,11 +47,22 @@ public class Product implements Serializable {
 
     }
 
+    public Product(int idProduct, String type, String producer, String model, String info, int quantity, int price, List<OrderItem> orderItems) {
+        this.idProduct = idProduct;
+        this.type = type;
+        this.producer = producer;
+        this.model = model;
+        this.info = info;
+        this.quantity = quantity;
+        this.price = price;
+        this.orderItems = orderItems;
+    }
+
     public long getProductId() {
         return idProduct;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(int productId) {
         this.idProduct = productId;
     }
 
@@ -95,11 +106,11 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -112,9 +123,7 @@ public class Product implements Serializable {
                 ", model='" + model + '\'' +
                 ", info='" + info + '\'' +
                 ", quantity=" + quantity +
-                ", price='" + price + '\'' +
-                ", orderItems=" + orderItems +
-                '}';
+                ", price='" + price ;
     }
 }
 

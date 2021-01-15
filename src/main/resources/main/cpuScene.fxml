@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minWidth="800.0" prefHeight="550.0" prefWidth="750.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.centralProfessorUnitControllers">
+   <children>
+      <TextField layoutX="82.0" layoutY="73.0" prefHeight="25.0" prefWidth="467.0" />
+      <Button layoutX="549.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Wyszukaj" />
+      <Label alignment="CENTER" layoutX="47.0" layoutY="14.0" prefHeight="51.0" prefWidth="677.0" text="Hurtownia Sprzetu Komputerowego" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableView" layoutX="93.0" layoutY="120.0" prefHeight="391.0" prefWidth="615.0">
+        <columns>
+            <TableColumn fx:id="type" prefWidth="49.0" text="Typ" />
+          <TableColumn fx:id="producer" prefWidth="76.0" text="Producent" />
+          <TableColumn fx:id="model" prefWidth="55.0" text="Model" />
+            <TableColumn fx:id="info" prefWidth="277.0" text="Info" />
+            <TableColumn fx:id="quantity" minWidth="0.0" prefWidth="42.0" text="Ilość" />
+            <TableColumn fx:id="price" minWidth="0.0" prefWidth="67.0" text="Cena" />
+        </columns>
+      </TableView>
+      <Button layoutX="724.0" layoutY="120.0" mnemonicParsing="false" text="Dodaj" />
+   </children>
+</AnchorPane>

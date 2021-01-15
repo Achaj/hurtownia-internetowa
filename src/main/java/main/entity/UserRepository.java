@@ -46,7 +46,7 @@ public class UserRepository {
         return userTypedQuery.getResultList().get(0);
 
     }
-    public User updatePasswordUserById(long id, String newFirsName) {
+    public User updatePasswordUserById(int id, String newFirsName) {
         //entityTransaction.begin();
         User user = findUserById(id);
         try {
@@ -67,13 +67,13 @@ public class UserRepository {
 
     }
 
-    public User findUserById(long id) {
+    public User findUserById(int id) {
         User user = entityManager.find(User.class, id);
         return user;
     }
     //aby zmienić imię trzeba podać id w longu i imie na jakie ma być zmienione
 
-    public User updateFirstNameUserById(long id, String newFirsName) {
+    public User updateFirstNameUserById(int id, String newFirsName) {
         entityTransaction.begin();
         User user = findUserById(id);
         try {
@@ -87,7 +87,7 @@ public class UserRepository {
         return user;
     }
 
-    public User updateAddresById(long id, String zipCode, String city, String street, String numberInStreat) {
+    public User updateAddresById(int id, String zipCode, String city, String street, String numberInStreat) {
         entityTransaction.begin();
         User user = findUserById(id);
         try {
@@ -104,7 +104,7 @@ public class UserRepository {
         return user;
     }
 
-    public User changeAccountTypeToAdmin(long id) {
+    public User changeAccountTypeToAdmin(int id) {
         entityTransaction.begin();
         User user = findUserById(id);
         try {
@@ -118,7 +118,7 @@ public class UserRepository {
         return user;
     }
 
-    public void delateUserById(long id) {
+    public void delateUserById(int id) {
         entityTransaction.begin();
         User user = findUserById(id);
         if (entityManager.contains(user)) {

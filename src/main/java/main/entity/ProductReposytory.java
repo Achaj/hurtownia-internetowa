@@ -41,16 +41,22 @@ public class ProductReposytory {
         return productTypedQuery.getResultList();
     }
 
-    /*Pobranie listy wszystkich Produkt "Jednogo " po id*/
-    public Product getOneProduct(long id) {
+    /*Pobranie listy  Produkt "Jednogo " po id*/
+    public Product getOneProduct(int id) {
 
         TypedQuery<Product> productTypedQuery = entityManager.createQuery("SELECT p FROM Product p Where p.idProduct=:id", Product.class);
         productTypedQuery.setParameter("id", id);
         return productTypedQuery.getResultList().get(0);
     }
+    /*Pobranie listy  Produktów o określonym typie*/
+    public List<Product> getAllProductType(String type) {
+        TypedQuery<Product> productTypedQuery = entityManager.createQuery("SELECT p FROM Product p Where p.type=:type", Product.class);
+        productTypedQuery.setParameter("type", type);
+        return productTypedQuery.getResultList();
+    }
 
     /*Aby zaktualizowac cenę podaj id produktu następnie nową cene jako String*/
-    public Product updateProductPrice(long id, String price) {
+    public Product updateProductPrice(int id, int price) {
         entityTransaction.begin();
         Product product = findProductById(id);
         try {
@@ -65,7 +71,7 @@ public class ProductReposytory {
     }
 
     /*Aby zaktualizowac ilość sztuk podaj id produktu następnie nową ilość sztuk  jako int*/
-    public Product updateProductPrice(long id, int quantity) {
+    public Product updateProductQuantity(int id, int quantity) {
         entityTransaction.begin();
         Product product = findProductById(id);
         try {
@@ -79,7 +85,7 @@ public class ProductReposytory {
         return product;
     }
     /*Aby zaktualizowac dodatkowe informację podaj id produktu następnie nowe info jako(String)*/
-    public Product updateProductInfo(long id, String info) {
+    public Product updateProductInfo(int id, String info) {
         entityTransaction.begin();
         Product product = findProductById(id);
         try {
@@ -94,7 +100,7 @@ public class ProductReposytory {
     }
 
     /* ABY USUNĄC REKORD Z Product MUSIMY PODAC JEGO ID */
-    public void delateOrderItemById(long id) {
+    public void delateOrderItemById(int id) {
         entityTransaction.begin();
         Product product = findProductById(id);
         if (entityManager.contains(product)) {

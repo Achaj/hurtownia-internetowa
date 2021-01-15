@@ -34,7 +34,7 @@ public class OrderRepository {
         return order;
     }
 
-    public Order findOrderById(long id) {
+    public Order findOrderById(int id) {
         Order order = entityManager.find(Order.class, id);
         return order;
     }
@@ -47,7 +47,7 @@ public class OrderRepository {
     }
 
     /*Pobranie listy wszystkich zamówien urzytkownika*/
-    public List<Order> getAllOrderOfOneUser(long id_user) {
+    public List<Order> getAllOrderOfOneUser(int id_user) {
         entityTransaction.begin();
         TypedQuery<Order> orderTypeQuery = entityManager.createQuery("SELECT o FROM Order o WHERE o.user.idUser=:id", Order.class);
         orderTypeQuery.setParameter("id", id_user);
@@ -57,7 +57,7 @@ public class OrderRepository {
     /*Aby zaktualizować status zamówienia podajemy id i na jaki status zmieniamy
     data się aktualizuje wraz ze statusem zamówienia
      */
-    public Order updateOrderStatus(long id, String status) {
+    public Order updateOrderStatus(int id, String status) {
         entityTransaction.begin();
         Order order = findOrderById(id);
         try {
@@ -74,7 +74,7 @@ public class OrderRepository {
     }
 
     /* ABY USUNĄC REKORD Z ORDER MUSIMY PODAC JEGO ID */
-    public void delateOrderItemById(long id) {
+    public void delateOrderItemById(int id) {
         entityTransaction.begin();
         Order order = findOrderById(id);
         if (entityManager.contains(order)) {

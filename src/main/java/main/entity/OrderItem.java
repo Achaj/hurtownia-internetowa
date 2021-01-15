@@ -17,7 +17,7 @@ public class OrderItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_order_item")
-    private long idOrderItem;
+    private int idOrderItem;
     @Column(name = "quantity_item")
     private int quantity;
     @ManyToOne
@@ -38,11 +38,11 @@ public class OrderItem implements Serializable {
         this.order = order;
     }
 
-    public long getIdOrderItem() {
+    public int getIdOrderItem() {
         return idOrderItem;
     }
 
-    public void setIdOrderItem(long idOrderItem) {
+    public void setIdOrderItem(int idOrderItem) {
         this.idOrderItem = idOrderItem;
     }
 
