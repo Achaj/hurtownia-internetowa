@@ -46,9 +46,14 @@ public class UserSettingController  implements Initializable {
 
     public void changeNameAndSeconName(MouseEvent mouseEvent) {
         UserRepository  userRepositor = new UserRepository();
+        Alert alert = new Alert(Alert.AlertType.NONE);
         if(userRepositor.updateFirstNameUserById(user.getId(), name.getText(),secondName.getText())==false) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Błąd zmiany Imienia i Nazwiska!");
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("Błąd zmiany Imienia i nazwiska!");
+            alert.show();
+        }else{
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Pomyślnie wprowadzono zmiany");
             alert.show();
         }
         userRepositor.closeConnectDB();
@@ -57,9 +62,14 @@ public class UserSettingController  implements Initializable {
 
     public void changeAdres(MouseEvent mouseEvent) {
         UserRepository  userRepositor = new UserRepository();
+        Alert alert = new Alert(Alert.AlertType.NONE);
         if(userRepositor.updateAddresById(user.getId(),zipCode.getText(),city.getText(),street.getText(),numberInStreet.getText())==false) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("Błąd zmiany adresu!");
+            alert.show();
+        }else{
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Pomyślnie wprowadzono zmiany");
             alert.show();
         }
         userRepositor.closeConnectDB();
@@ -70,26 +80,31 @@ public class UserSettingController  implements Initializable {
     }
 
     public void changeEmail(MouseEvent mouseEvent) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
         if (!user.getEmail().equals(newEmail.getText())){
 
         if(newEmail.getText().equals(newEmailConfirm.getText())) {
             UserRepository userRepositor = new UserRepository();
 
                 if(userRepositor.updateEmailById(user.getId(), newEmail.getText())==false) {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                  alert.setAlertType(Alert.AlertType.WARNING);
                     alert.setContentText("Taki adres email jest już zajęty!");
+                    alert.show();
+                }else {
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Pomyślnie wprowadzono zmiany");
                     alert.show();
                 }
                 userRepositor.closeConnectDB();
-
             loadUserDate();
-        }else {
-            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+        }
+        else {
+            alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("Adresy email nie są identyczne !");
             alert.show();
-        }
+            }
         }else {
-            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Twoje konto jest obecnie ustawione na ten adres !");
             alert.show();
         }

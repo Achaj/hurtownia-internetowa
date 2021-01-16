@@ -26,25 +26,53 @@ public class MainSceneShopController  implements Initializable{
         App.setRoot("Product");
     }
 
-    public void motherboardSceneChange(MouseEvent mouseEvent) {
+    public void motherboardSceneChange(MouseEvent mouseEvent) throws IOException {
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("motherboard");
+        App.setRoot("Product");
     }
 
-    public void harddriveSceneChange(MouseEvent mouseEvent) {
+    public void harddriveSceneChange(MouseEvent mouseEvent) throws IOException {
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("hdd");
+        App.setRoot("Product");
     }
 
-    public void psuSceneChange(MouseEvent mouseEvent) {
+    public void psuSceneChange(MouseEvent mouseEvent) throws IOException {
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("psu");
+        App.setRoot("Product");
     }
 
-    public void cddriverSceneChange(MouseEvent mouseEvent) {
+    public void cddriverSceneChange(MouseEvent mouseEvent) throws IOException {
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("cddriver");
+        App.setRoot("Product");
     }
 
-    public void computercaseSceneChange(MouseEvent mouseEvent) {
+    public void computercaseSceneChange(MouseEvent mouseEvent) throws IOException {
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("case");
+        App.setRoot("Product");
     }
 
-    public void soundSceneChange(MouseEvent mouseEvent) {
+    public void soundSceneChange(MouseEvent mouseEvent) throws IOException {
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("soundCard");
+        App.setRoot("Product");
     }
 
-    public void coolerSceneChange(MouseEvent mouseEvent) {
+    public void coolerSceneChange(MouseEvent mouseEvent) throws IOException {
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("cooler");
+        App.setRoot("Product");
     }
     public void setSceneLogin(MouseEvent mouseEvent) throws IOException {
         TemporayUser temporayUser=new TemporayUser();
