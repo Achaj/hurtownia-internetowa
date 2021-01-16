@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "product", schema = "public")
 public class Product implements Serializable {
-
     @Id
     @Column(name = "id_product")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +57,7 @@ public class Product implements Serializable {
         this.orderItems = orderItems;
     }
 
-    public long getProductId() {
+    public int getProductId() {
         return idProduct;
     }
 

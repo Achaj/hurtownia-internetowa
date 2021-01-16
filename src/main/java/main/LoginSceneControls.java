@@ -48,8 +48,8 @@ public class LoginSceneControls{
         User user= userRepository.getUserByEmail(userEmail.getText());
         if (user.getPassword().equals(userPassword.getText())){
             System.out.println("zalogowano poprawnie");
-            EntityManagerConnection entityManagerConnection=new EntityManagerConnection();
-            entityManagerConnection.setCurrentUser(user);
+            TemporayUser temporayUser=new TemporayUser();
+            temporayUser.setCurrentUser(user);
         }else{
             System.out.println("nie ma takiego email lub błedne hasło");
         }

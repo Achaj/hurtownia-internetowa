@@ -14,7 +14,7 @@ public class ProductReposytory {
 
     public Product saveProduct(Product product) {
         entityTransaction.begin();
-        if (product.getProductId() == 0L) {
+        if (product.getProductId() == 0) {
             try {
                 entityManager.persist(product);
             } catch (Exception e) {
@@ -29,7 +29,7 @@ public class ProductReposytory {
     }
 
     /*Aby wyszukać produkt podaj jego id*/
-    public Product findProductById(long id) {
+    public Product findProductById(int id) {
         Product product = entityManager.find(Product.class, id);
         return product;
     }
@@ -50,8 +50,8 @@ public class ProductReposytory {
     }
     /*Pobranie listy  Produktów o określonym typie*/
     public List<Product> getAllProductType(String type) {
-        TypedQuery<Product> productTypedQuery = entityManager.createQuery("SELECT p FROM Product p Where p.type=:type", Product.class);
-        productTypedQuery.setParameter("type", type);
+        TypedQuery<Product> productTypedQuery = entityManager.createQuery("SELECT p FROM Product p Where p.type=:t", Product.class);
+        productTypedQuery.setParameter("t", type);
         return productTypedQuery.getResultList();
     }
 
@@ -72,7 +72,7 @@ public class ProductReposytory {
 
     /*Aby zaktualizowac ilość sztuk podaj id produktu następnie nową ilość sztuk  jako int*/
     public Product updateProductQuantity(int id, int quantity) {
-        entityTransaction.begin();
+       // entityTransaction.begin();
         Product product = findProductById(id);
         try {
             product.setQuantity(quantity);

@@ -14,11 +14,11 @@ public class OrderItemReposytory {
 
     public OrderItem saveOrderItem(OrderItem orderItem) {
         entityTransaction.begin();
-        if (orderItem.getIdOrderItem() == 0L) {
+        if (orderItem.getIdOrderItem() == 0) {
             try {
                 ProductReposytory productReposytory = new ProductReposytory();
                 Product product = productReposytory.findProductById(orderItem.getProduct().getProductId());
-                if (product.getQuantity() - orderItem.getQuantity() > 0) {
+                if (product.getQuantity() - orderItem.getQuantity() >= 0) {
                     product.setQuantity(product.getQuantity() - orderItem.getQuantity());
                     entityManager.merge(product);
                     entityManager.persist(orderItem);
@@ -108,7 +108,7 @@ public class OrderItemReposytory {
         return orderItem;
     }
 
-    public OrderItem updateProductOnOrderId(int idOrderItem, long idProduct) {
+    public OrderItem updateProductOnOrderId(int idOrderItem, int idProduct) {
         entityTransaction.begin();
         OrderItem orderItem = findOrderItemById(idOrderItem);
         try {

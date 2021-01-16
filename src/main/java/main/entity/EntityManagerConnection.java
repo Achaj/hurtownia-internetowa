@@ -23,15 +23,5 @@ public class EntityManagerConnection {
     public void closeConnectDB(){
         entityManager.close();
     }
-    public User getCurrentUser(){
-        if (user==null){
-             System.out.println("nie jesteś zalogowany");
-             user=new User();
-        }
-        return user;
-    }
-    public User setCurrentUser(User user1){
-        user=user1;
-        return user;
-    }
+
 }

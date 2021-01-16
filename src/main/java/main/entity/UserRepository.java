@@ -16,7 +16,7 @@ public class UserRepository {
     public User saveUser(User user) {
         entityTransaction.begin();
         try {
-            if (user.getId() == 0L) {
+            if (user.getId() == 0) {
                 entityManager.persist(user);
             } else {
                 user = entityManager.merge(user);
@@ -73,23 +73,44 @@ public class UserRepository {
     }
     //aby zmienić imię trzeba podać id w longu i imie na jakie ma być zmienione
 
-    public User updateFirstNameUserById(int id, String newFirsName) {
+    public boolean updateFirstNameUserById(int id, String newFirsName,String newSecondName) {
         entityTransaction.begin();
         User user = findUserById(id);
+        boolean status=false;
         try {
             user.setFirstName(newFirsName);
+            user.setSecondName(newSecondName);
             entityManager.merge(user);
             entityTransaction.commit();
+            status=true;
         } catch (Exception e) {
             e.printStackTrace();
             entityTransaction.rollback();
+            status=false;
         }
-        return user;
+        return status;
     }
-
-    public User updateAddresById(int id, String zipCode, String city, String street, String numberInStreat) {
+    public boolean updateEmailById(int id, String email) {
         entityTransaction.begin();
         User user = findUserById(id);
+        boolean status=false;
+        try {
+            user.setEmail(email);
+            entityManager.merge(user);
+            entityTransaction.commit();
+            status=true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityTransaction.rollback();
+            status=false;
+        }
+        return status;
+    }
+
+    public boolean updateAddresById(int id, String zipCode, String city, String street, String numberInStreat) {
+        entityTransaction.begin();
+        User user = findUserById(id);
+        boolean status=false;
         try {
             user.setZipCode(zipCode);
             user.setCity(city);
@@ -97,11 +118,13 @@ public class UserRepository {
             user.setNumberInStreet(numberInStreat);
             entityManager.merge(user);
             entityTransaction.commit();
+            status=true;
         } catch (Exception e) {
             e.printStackTrace();
             entityTransaction.rollback();
+            status=false;
         }
-        return user;
+        return status;
     }
 
     public User changeAccountTypeToAdmin(int id) {

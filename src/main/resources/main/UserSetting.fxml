@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.UserSettingController">
+  <children>
+      <Button ellipsisString="5" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back to Shop" textAlignment="CENTER" />
+      <Button ellipsisString="5" layoutX="594.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#deleteAcount" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #ffffff; -fx-background-radius: 90;" text="Usuń konto" textAlignment="CENTER" />
+      <AnchorPane layoutX="61.0" layoutY="172.0" prefHeight="280.0" prefWidth="200.0">
+         <children>
+            <Button ellipsisString="5" layoutX="27.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#changeEmail" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Zmień emial" textAlignment="CENTER" />
+            <Label layoutX="66.0" layoutY="14.0" text="Obecny Emial" textAlignment="CENTER" textFill="#fffefe" />
+            <TextField fx:id="oldEmaiL" editable="false" layoutX="28.0" layoutY="37.0" />
+            <Label layoutX="71.0" layoutY="62.0" text="Nowy Emial" textAlignment="CENTER" textFill="#fffefe" />
+            <TextField fx:id="newEmail" layoutX="28.0" layoutY="79.0" />
+            <Label layoutX="43.0" layoutY="104.0" text="Potwierdź Nowy Email" textAlignment="CENTER" textFill="#fffefe" />
+            <TextField fx:id="newEmailConfirm" layoutX="28.0" layoutY="121.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="291.0" layoutY="172.0" prefHeight="280.0" prefWidth="200.0">
+         <children>
+            <Button ellipsisString="5" layoutX="27.0" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#changeNameAndSeconName" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Zmień Imię i Nazwisko" textAlignment="CENTER" />
+            <Label layoutX="88.0" layoutY="14.0" prefHeight="17.0" prefWidth="26.0" text="Imię" textFill="WHITE" />
+            <TextField fx:id="name" layoutX="26.0" layoutY="37.0" />
+            <TextField fx:id="secondName" layoutX="26.0" layoutY="79.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="76.0" layoutY="62.0" prefHeight="17.0" prefWidth="51.0" text="Nazwisko" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="517.0" layoutY="172.0" prefHeight="280.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="76.0" layoutY="14.0" text="Miasto" textAlignment="CENTER" textFill="#fffefe" />
+            <TextField fx:id="city" editable="false" layoutX="24.0" layoutY="37.0" />
+            <Label layoutX="87.0" layoutY="62.0" text="Ulica" textAlignment="CENTER" textFill="#fffefe" />
+            <TextField fx:id="street" layoutX="24.0" layoutY="79.0" />
+            <Label layoutX="58.0" layoutY="104.0" text="Numer na Ulicy" textAlignment="CENTER" textFill="#fffefe" />
+            <TextField fx:id="numberInStreet" layoutX="24.0" layoutY="121.0" />
+            <Button ellipsisString="5" layoutX="27.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#changeAdres" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Zmień Adres" textAlignment="CENTER" />
+            <Label layoutX="59.0" layoutY="146.0" text="Kod Pocztowy" textAlignment="CENTER" textFill="#fffefe" />
+            <TextField fx:id="zipCode" layoutX="26.0" layoutY="163.0" />
+            <Label text="Label" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="labelHello" layoutX="209.0" layoutY="83.0" prefHeight="54.0" prefWidth="365.0" text="Witaj " textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

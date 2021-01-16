@@ -20,7 +20,7 @@ public class OrderRepository {
 
     public Order saveOrder(Order order) {
         entityTransaction.begin();
-        if (order.getIdOrder() == 0L) {
+        if (order.getIdOrder() == 0) {
             try {
                 entityManager.persist(order);
             } catch (Exception e) {
@@ -53,6 +53,8 @@ public class OrderRepository {
         orderTypeQuery.setParameter("id", id_user);
         return orderTypeQuery.getResultList();
     }
+
+
 
     /*Aby zaktualizować status zamówienia podajemy id i na jaki status zmieniamy
     data się aktualizuje wraz ze statusem zamówienia

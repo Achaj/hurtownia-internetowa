@@ -1,32 +1,29 @@
 package main;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
-import main.App;
-import main.entity.EntityManagerConnection;
+import main.entity.ProductReposytory;
+import main.entity.User;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainSceneShopController implements Initializable {
-    @FXML
-    private ComboBox<String> comboBoxCategoryItem;
-
-    private final String[] COMPUTERS_COMPONENT={"Procesor","Karta Graficzna","Zasilacz","Płyta Główna","Dysk","Karta Dziękowa","Napęd CD","Obudowa","Chłodzenie"};
-    private  final ObservableList<String> COMPONENT_LIST= FXCollections.observableArrayList(COMPUTERS_COMPONENT);
-
+public class MainSceneShopController  implements Initializable{
 
     public void cpuSceneChange(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("cpuScene");
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("cpu");
+        App.setRoot("Product");
+
     }
 
     public void gpuSceneChange(MouseEvent mouseEvent) throws IOException{
-        App.setRoot("gpuScene");
+        ProductReposytory productReposytory=new ProductReposytory();
+        ProductController centralProfessorUnitControllers=new ProductController();
+        centralProfessorUnitControllers.setTypeQurt("gpu");
+        App.setRoot("Product");
     }
 
     public void motherboardSceneChange(MouseEvent mouseEvent) {
@@ -49,18 +46,22 @@ public class MainSceneShopController implements Initializable {
 
     public void coolerSceneChange(MouseEvent mouseEvent) {
     }
+    public void setSceneLogin(MouseEvent mouseEvent) throws IOException {
+        TemporayUser temporayUser=new TemporayUser();
+        User user=temporayUser.getCurrentUser();
+        if(user==null){
+            App.setRoot("loginScene");
+        }else {
+            App.setRoot("UserSetting");
+        }
+    }
 
+    public void setSceneBasket(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("Bracket");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        comboBoxCategoryItem.setItems(COMPONENT_LIST);
-    }
-
-    public void setSceneLogin(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("loginScene");
-    }
-
-    public void setSceneBasket(MouseEvent mouseEvent) {
     }
 }
