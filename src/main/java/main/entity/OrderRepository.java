@@ -19,7 +19,9 @@ public class OrderRepository {
     EntityTransaction entityTransaction = entityManagerConnection.getEntityTransaction();
 
     public Order saveOrder(Order order) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         if (order.getIdOrder() == 0) {
             try {
                 entityManager.persist(order);
@@ -41,16 +43,21 @@ public class OrderRepository {
 
     /*Pobranie listy wszystkich zamówien wszystkich urzytkowników*/
     public List<Order> getAllOrder() {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         TypedQuery<Order> orderTypeQuery = entityManager.createQuery("SELECT o FROM Order o ", Order.class);
         return orderTypeQuery.getResultList();
     }
 
     /*Pobranie listy wszystkich zamówien urzytkownika*/
     public List<Order> getAllOrderOfOneUser(int id_user) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         TypedQuery<Order> orderTypeQuery = entityManager.createQuery("SELECT o FROM Order o WHERE o.user.idUser=:id", Order.class);
         orderTypeQuery.setParameter("id", id_user);
+
         return orderTypeQuery.getResultList();
     }
 
@@ -60,7 +67,9 @@ public class OrderRepository {
     data się aktualizuje wraz ze statusem zamówienia
      */
     public Order updateOrderStatus(int id, String status) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         Order order = findOrderById(id);
         try {
             order.setStatus(status);
@@ -77,7 +86,9 @@ public class OrderRepository {
 
     /* ABY USUNĄC REKORD Z ORDER MUSIMY PODAC JEGO ID */
     public void delateOrderItemById(int id) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         Order order = findOrderById(id);
         if (entityManager.contains(order)) {
             entityManager.remove(order);

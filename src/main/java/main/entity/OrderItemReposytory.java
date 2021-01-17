@@ -13,7 +13,9 @@ public class OrderItemReposytory {
     EntityTransaction entityTransaction = entityManagerConnection.getEntityTransaction();
 
     public OrderItem saveOrderItem(OrderItem orderItem) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         if (orderItem.getIdOrderItem() == 0) {
             try {
                 ProductReposytory productReposytory = new ProductReposytory();
@@ -44,22 +46,28 @@ public class OrderItemReposytory {
 
     /*Pobranie listy wszystkich pozycji zamówien wszystkich urzytkowników*/
     public List<OrderItem> getAllOrderItemsAllOrders() {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         TypedQuery<OrderItem> orderItemTypeQuery = entityManager.createQuery("SELECT i FROM OrderItem i ", OrderItem.class);
         return orderItemTypeQuery.getResultList();
     }
 
     /*Pobieranie wszystkich pozycji danego zamówienia*/
     public List<OrderItem> getAllOrderItemsOnOneOrder(int id) {
-        entityTransaction.begin();
-        TypedQuery<OrderItem> orderItemTypeQuery = entityManager.createQuery("SELECT i FROM OrderItem i WHERE i.idOrd erItem=: id", OrderItem.class);
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
+        TypedQuery<OrderItem> orderItemTypeQuery = entityManager.createQuery("SELECT i FROM OrderItem i WHERE i.order.idOrder =: id", OrderItem.class);
         orderItemTypeQuery.setParameter("id", id);
         return orderItemTypeQuery.getResultList();
     }
 
     /*ABY ZAKUTALIZOWAĆ LICZBĘ SZTUK W ORDERITEM PODJAEMI ID_ORDERITEM ORAZ LICZBY NA JAKA MA ZAKTUALIZOWAĆ*/
     public OrderItem updateOrderItemQuantitiById(int id, int quantity) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         ProductReposytory productReposytory = new ProductReposytory();
         OrderItem orderItem = findOrderItemById(id);
         Product product = productReposytory.findProductById(orderItem.getProduct().getProductId());
@@ -109,7 +117,9 @@ public class OrderItemReposytory {
     }
 
     public OrderItem updateProductOnOrderId(int idOrderItem, int idProduct) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         OrderItem orderItem = findOrderItemById(idOrderItem);
         try {
             ProductReposytory productReposytory = new ProductReposytory();

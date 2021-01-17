@@ -45,15 +45,12 @@ public class ProductController implements Initializable {
 
     private void loadDateToTableView() {
 
-        productObservableList = FXCollections.observableArrayList();
-        productObservableList.removeAll(productObservableList);
-        productObservableList.addAll(products);
-
-        /*Sprawdzanie czy dane się ładują
-        for (Product product : productObservableList) {
-            System.out.println(product.toString());
-        }*/
-        tableView.getItems().addAll(productObservableList);
+        if(products!=null) {
+            productObservableList = FXCollections.observableArrayList();
+            productObservableList.removeAll(productObservableList);
+            productObservableList.addAll(products);
+            tableView.getItems().addAll(productObservableList);
+        }
     }
     private void initializeColumn(){
         type.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
@@ -91,8 +88,9 @@ public class ProductController implements Initializable {
                     productBracket.add(selectedProduct);
                     bracket.setProducts(productBracket);
                     System.out.println("--->TemporaryBracket");
-                    selectedProduct.setQuantity(currentQuntity-1);
+                    //selectedProduct.setQuantity(currentQuntity-1);
                     bracket.printsTemporaryBracket();
+
 
                 } else {
                     a.setHeaderText("Brak Pozycji na magazynie");

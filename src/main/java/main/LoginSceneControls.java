@@ -2,10 +2,7 @@ package main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import main.App;
 import main.entity.EntityManagerConnection;
@@ -43,16 +40,30 @@ public class LoginSceneControls{
         App.setRoot("forgetPass");
     }
 
-    public void loginDB(ActionEvent actionEvent) {
+    public void loginDB(ActionEvent actionEvent) throws IOException {
         UserRepository userRepository=new UserRepository();
         User user= userRepository.getUserByEmail(userEmail.getText());
+        Alert alert= new Alert(Alert.AlertType.NONE);
+        if(user!=null){
         if (user.getPassword().equals(userPassword.getText())){
-            System.out.println("zalogowano poprawnie");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Zalogowano Porawnie");
+            alert.setContentText("Dziń dobry "+user.getFirstName());
             TemporayUser temporayUser=new TemporayUser();
             temporayUser.setCurrentUser(user);
+            App.setRoot("mainSceneShop");
         }else{
-            System.out.println("nie ma takiego email lub błedne hasło");
+
+            alert.setAlertType( Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Wpisano błędne hasło");
+            alert.setContentText("Wpisz poprawne hasło");
         }
+
+        }else{
+            alert.setAlertType( Alert.AlertType.WARNING);
+            alert.setHeaderText("Nie ma konta z podany adresem email");
+        }
+        alert.show();
     }
     @FXML
     public void backToMainScene(MouseEvent mouseEvent) throws IOException {

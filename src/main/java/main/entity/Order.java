@@ -30,7 +30,7 @@ public class Order implements Serializable  {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     @ManyToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_user",nullable = true)
     private User user;
     @Column(name = "status")
     private String status;

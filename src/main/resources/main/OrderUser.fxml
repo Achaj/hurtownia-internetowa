@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.OrderUserController">
+  <children>
+      <Button ellipsisString="5" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back to Shop" textAlignment="CENTER" />
+      <Label text="Label" />
+      <Label layoutX="270.0" layoutY="77.0" prefHeight="50.0" prefWidth="260.0" text="Lista Zamówień" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableOrderUser" layoutX="73.0" layoutY="127.0" prefHeight="417.0" prefWidth="315.0">
+        <columns>
+
+            <TableColumn fx:id="dateColumn" minWidth="5.0" prefWidth="113.0" text="Data" />
+            <TableColumn fx:id="statusColumn" prefWidth="201.0" text="Status" />
+        </columns>
+      </TableView>
+      <Button ellipsisString="5" layoutX="691.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#showDetails" prefHeight="75.0" prefWidth="95.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Pokaż Szczegóły Zamówienia" textAlignment="CENTER" wrapText="true" />
+      <Button ellipsisString="5" layoutX="691.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="75.0" prefWidth="95.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Anuluj Zamówienie" textAlignment="CENTER" wrapText="true" />
+      <TableView fx:id="tableOrderItem" layoutX="388.0" layoutY="127.0" prefHeight="417.0" prefWidth="50.0">
+         <columns>
+            <TableColumn fx:id="quantity" prefWidth="49.0" text="Ilość" />
+         </columns>
+      </TableView>
+      <TableView fx:id="productTable" layoutX="438.0" layoutY="127.0" prefHeight="417.0" prefWidth="231.0">
+         <columns>
+            <TableColumn fx:id="producer" prefWidth="69.0" text="Producent" />
+            <TableColumn fx:id="model" prefWidth="115.0" text="Model" />
+            <TableColumn fx:id="price" prefWidth="46.0" text="Cena" />
+         </columns>
+      </TableView>
+      <TextField fx:id="currentPriceOrder" editable="false" layoutX="682.0" layoutY="506.0" prefHeight="25.0" prefWidth="107.0" promptText="zł" />
+      <Label layoutX="681.0" layoutY="470.0" prefHeight="20.0" prefWidth="116.0" text="Cena Zamówienia" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

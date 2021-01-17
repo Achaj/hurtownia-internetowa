@@ -14,7 +14,9 @@ public class UserRepository {
 
 
     public User saveUser(User user) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         try {
             if (user.getId() == 0) {
                 entityManager.persist(user);
@@ -32,7 +34,9 @@ public class UserRepository {
     }
 
     public List<User> getAllUserByName(String name) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         TypedQuery<User> userTypedQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.firstName=: name", User.class);
         userTypedQuery.setParameter("name", name);
         System.out.println(userTypedQuery);
@@ -40,14 +44,21 @@ public class UserRepository {
 
     }
     public User getUserByEmail(String email) {
-       // entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         TypedQuery<User> userTypedQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.email=: email", User.class);
         userTypedQuery.setParameter("email", email);
-        return userTypedQuery.getResultList().get(0);
-
+        if(userTypedQuery.getResultList().size()==0){
+            return null;
+        }else {
+            return userTypedQuery.getResultList().get(0);
+        }
     }
     public User updatePasswordUserById(int id, String newFirsName) {
-        //entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         User user = findUserById(id);
         try {
             user.setPassword(newFirsName);
@@ -61,7 +72,9 @@ public class UserRepository {
     }
 
     public List<User> getAllUser() {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         TypedQuery<User> userTypedQuery = entityManager.createQuery("SELECT u FROM User u", User.class);
         return userTypedQuery.getResultList();
 
@@ -74,7 +87,9 @@ public class UserRepository {
     //aby zmienić imię trzeba podać id w longu i imie na jakie ma być zmienione
 
     public boolean updateFirstNameUserById(int id, String newFirsName,String newSecondName) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         User user = findUserById(id);
         boolean status=false;
         try {
@@ -91,7 +106,9 @@ public class UserRepository {
         return status;
     }
     public boolean updateEmailById(int id, String email) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         User user = findUserById(id);
         boolean status=false;
         try {
@@ -108,7 +125,9 @@ public class UserRepository {
     }
 
     public boolean updateAddresById(int id, String zipCode, String city, String street, String numberInStreat) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         User user = findUserById(id);
         boolean status=false;
         try {
@@ -128,7 +147,9 @@ public class UserRepository {
     }
 
     public User changeAccountTypeToAdmin(int id) {
-        entityTransaction.begin();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
         User user = findUserById(id);
         try {
             user.setTypeUser("admin");
@@ -141,15 +162,42 @@ public class UserRepository {
         return user;
     }
 
-    public void delateUserById(int id) {
-        entityTransaction.begin();
+    public boolean delateUserById(int id) {
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
+        //Pobieramy listę zamówień danego użykonika
+        OrderRepository orderRepository=new OrderRepository();
+        List<Order> orders=orderRepository.getAllOrderOfOneUser(id);
         User user = findUserById(id);
+        boolean status=false;
         if (entityManager.contains(user)) {
-            entityManager.remove(user);
+            try {
+                //jeśli użytkownik posiada zamówienie id użytownika zostaje
+                //ustawiona na null a status jeśli nie był zakończony na anulowano
+                if(orders!=null) {
+                    for (Order order : orders) {
+                        if (!order.getStatus().equals("zakończono")) {
+                            order.setStatus("Anulowano");
+                        }
+                        order.setUser(null);
+                        entityManager.merge(order);
+                    }
+                }
+                entityManager.remove(user);
+               entityTransaction.commit();
+                status=true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                entityTransaction.rollback();
+                status=false;
+
+            }
         } else {
             entityManager.merge(user);
         }
-        entityTransaction.commit();
+
+        return status;
     }
 
     public void closeConnectDB() {

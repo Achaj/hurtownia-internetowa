@@ -1,14 +1,14 @@
 package main;
 
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import main.entity.User;
 import main.entity.UserRepository;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class UserSettingController  implements Initializable {
@@ -41,7 +41,8 @@ public class UserSettingController  implements Initializable {
          loadUserDate();
     }
 
-    public void backToMainScene(MouseEvent mouseEvent) {
+    public void backToMainScene(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("mainSceneShop");
     }
 
     public void changeNameAndSeconName(MouseEvent mouseEvent) {
@@ -76,7 +77,30 @@ public class UserSettingController  implements Initializable {
         loadUserDate();
     }
 
-    public void deleteAcount(MouseEvent mouseEvent) {
+    public void deleteAcount(MouseEvent mouseEvent) throws IOException {
+        UserRepository  userRepositor = new UserRepository();
+        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Czy na pewno chcesz usunąć swoje konto ?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent()&&result.get()==ButtonType.OK) {
+            if(userRepositor.delateUserById(user.getId())==true) {
+                temporayUser.setCurrentUser(null);
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Opracja została wykonana poprawnie");
+                alert.setContentText("Zostajesz przemieszcony na stronę głowną sklepu");
+                alert.show();
+                App.setRoot("mainSceneShop");
+            }else {
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setHeaderText("Opracja nie została wykonana poprwnie");
+                alert.show();
+            }
+        }else {
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Opracja została anulowana");
+            alert.show();
+        }
+       // userRepositor.closeConnectDB();
     }
 
     public void changeEmail(MouseEvent mouseEvent) {
@@ -108,5 +132,17 @@ public class UserSettingController  implements Initializable {
             alert.setContentText("Twoje konto jest obecnie ustawione na ten adres !");
             alert.show();
         }
+    }
+
+    public void logout(MouseEvent mouseEvent) throws IOException {
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Zostałeś wylogowany");
+        alert.show();
+        temporayUser.setCurrentUser(null);
+        App.setRoot("mainSceneShop");
+    }
+
+    public void OrderUserScene(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("OrderUser");
     }
 }
