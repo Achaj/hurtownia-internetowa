@@ -145,4 +145,8 @@ public class UserSettingController  implements Initializable {
     public void OrderUserScene(MouseEvent mouseEvent) throws IOException {
         App.setRoot("OrderUser");
     }
+
+    public void changePass(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("changePass");
+    }
 }

@@ -2,10 +2,7 @@ package main.entity;
 
 import java.util.Date;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 /**
  *
@@ -13,10 +10,9 @@ import javax.persistence.TypedQuery;
  */
 public class OrderRepository {
 
-    EntityManagerConnection entityManagerConnection = new EntityManagerConnection();
-    EntityManagerFactory entityManagerFactory = entityManagerConnection.getEntityManagerFactory();
-    EntityManager entityManager = entityManagerConnection.getEntityManager();
-    EntityTransaction entityTransaction = entityManagerConnection.getEntityTransaction();
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DBCONNECTION");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityTransaction entityTransaction = entityManager.getTransaction();
 
     public Order saveOrder(Order order) {
         if(!entityTransaction.isActive()) {
@@ -98,7 +94,7 @@ public class OrderRepository {
         entityTransaction.commit();
     }
     public void closeConnectDB(){
-        entityManagerConnection.closeConnectDB();
+        entityManager.close();
     }
 }
 

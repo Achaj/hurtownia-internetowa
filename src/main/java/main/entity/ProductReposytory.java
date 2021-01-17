@@ -1,16 +1,13 @@
 package main.entity;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 public class ProductReposytory {
-    EntityManagerConnection entityManagerConnection = new EntityManagerConnection();
-    EntityManagerFactory entityManagerFactory = entityManagerConnection.getEntityManagerFactory();
-    EntityManager entityManager = entityManagerConnection.getEntityManager();
-    EntityTransaction entityTransaction = entityManagerConnection.getEntityTransaction();
+    //EntityManagerConnection entityManagerConnection = new EntityManagerConnection();
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DBCONNECTION");;
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityTransaction entityTransaction = entityManager.getTransaction();
 
     public Product saveProduct(Product product) {
         if(!entityTransaction.isActive()) {
@@ -128,6 +125,6 @@ public class ProductReposytory {
         entityTransaction.commit();
     }
     public void closeConnectDB(){
-        entityManagerConnection.closeConnectDB();
+        entityManager.close();
     }
 }

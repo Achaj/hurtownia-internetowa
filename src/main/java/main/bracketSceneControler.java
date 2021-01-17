@@ -121,6 +121,7 @@ public class bracketSceneControler implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Akceptujesz zamówienie");
                 Optional<ButtonType> result = alert.showAndWait();
+                //jesli nie zakceptuje zamówienia zamówienie zostanie nie zamówione
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     Date currentDate = new Date();
                     Order order = new Order();
@@ -132,14 +133,15 @@ public class bracketSceneControler implements Initializable {
                     orderRepository.saveOrder(order);
                     order = orderRepository.findOrderById(order.getIdOrder());
                     OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
-                    OrderItem orderItem = new OrderItem();
                     //zapis poszyzj w wzamówieni
                     for (Product p : products) {
+                        OrderItem orderItem = new OrderItem();
                         orderItem.setOrder(order);
                         orderItem.setProduct(p);
                         orderItem.setQuantity(p.getQuantity());
                         orderItemReposytory.saveOrderItem(orderItem);
                     }
+                    orderItemReposytory.closeConnectDB();
                     //Po wykonamym zamówienu czysci koszy
                     dellAllCurentBracketMethod();
 

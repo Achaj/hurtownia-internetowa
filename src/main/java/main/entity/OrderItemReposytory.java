@@ -1,16 +1,12 @@
 package main.entity;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 public class OrderItemReposytory {
-    EntityManagerConnection entityManagerConnection = new EntityManagerConnection();
-    EntityManagerFactory entityManagerFactory = entityManagerConnection.getEntityManagerFactory();
-    EntityManager entityManager = entityManagerConnection.getEntityManager();
-    EntityTransaction entityTransaction = entityManagerConnection.getEntityTransaction();
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DBCONNECTION");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityTransaction entityTransaction = entityManager.getTransaction();
 
     public OrderItem saveOrderItem(OrderItem orderItem) {
         if(!entityTransaction.isActive()) {
@@ -143,7 +139,7 @@ public class OrderItemReposytory {
         entityTransaction.commit();
     }
     public void closeConnectDB(){
-        entityManagerConnection.closeConnectDB();
+        entityManager.close();
     }
 }
 

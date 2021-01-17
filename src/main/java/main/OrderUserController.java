@@ -3,6 +3,7 @@ package main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -36,18 +37,18 @@ public class OrderUserController implements Initializable {
 
     TemporayUser temporayUser = new TemporayUser();
     User user = temporayUser.getCurrentUser();
-
-    OrderRepository orderRepository = new OrderRepository();
-    List<Order> orders = orderRepository.getAllOrderOfOneUser(user.getId());
     ObservableList<Order> orderObservableList;
 
     public void loadDateOrder() {
+        OrderRepository orderRepository = new OrderRepository();
+        List<Order> orders = orderRepository.getAllOrderOfOneUser(user.getId());
         if (orders != null) {
             orderObservableList = FXCollections.observableArrayList();
             orderObservableList.removeAll(orderObservableList);
             orderObservableList.addAll(orders);
             tableOrderUser.getItems().addAll(orderObservableList);
         }
+        orderRepository.closeConnectDB();
     }
 
     private void initializeColumnOrder() {
@@ -73,21 +74,22 @@ public class OrderUserController implements Initializable {
 
     }
 
-    OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
+
     List<OrderItem> orderItems;
     ObservableList<OrderItem> orderItemObservableList;
 
     public void loadDateOrderItem(int id_order) {
+        OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
         orderItems = orderItemReposytory.getAllOrderItemsOnOneOrder(id_order);
         if (orderItems != null) {
             tableOrderItem.getItems().clear();
             orderItemObservableList = FXCollections.observableArrayList();
             orderItemObservableList.removeAll(orderItemObservableList);
-            //productTable.refresh();
             orderItemObservableList.addAll(orderItems);
             tableOrderItem.getItems().addAll(orderItemObservableList);
 
         }
+        orderItemReposytory.closeConnectDB();
     }
 
     public void initializeColumnOrderItem() {
@@ -121,6 +123,7 @@ public class OrderUserController implements Initializable {
             productTable.getItems().addAll(productObservableList);
 
         }
+        productReposytory.closeConnectDB();
     }
     public void initializeColumnProduct() {
         producer.setCellValueFactory(new PropertyValueFactory<>("producer"));
@@ -128,4 +131,32 @@ public class OrderUserController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+    public void canelOrder(MouseEvent mouseEvent) {
+        //pobraranie zaznaczonego zamówienia
+        Order order = tableOrderUser.getSelectionModel().getSelectedItem();
+        //sprawdzanie czy zamówienie nie zostało już anulowane
+        if (!order.getStatus().equals("Anulowano")) {
+            ProductReposytory productReposytory = new ProductReposytory();
+            OrderRepository orderRepository = new OrderRepository();
+            orderRepository.updateOrderStatus(order.getIdOrder(), "Anulowano");
+
+            int quntity = 0;
+            for (OrderItem orderItem : orderItems) {
+                quntity = orderItem.getQuantity();
+                for (Product product : productObservableList) {
+                    if (product.getProductId() == orderItem.getProduct().getProductId()) {
+                        Product productINdB = productReposytory.getOneProduct(product.getProductId());
+                        productReposytory.updateProductQuantity(product.getProductId(), productINdB.getQuantity() + quntity);
+                    }
+                }
+            }
+            orderObservableList.clear();
+            loadDateOrder();
+            tableOrderUser.refresh();
+        }else {
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Zamówienie już jest anulowane");
+            alert.show();
+        }
+    }
 }

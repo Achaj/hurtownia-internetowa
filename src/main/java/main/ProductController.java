@@ -111,6 +111,7 @@ public class ProductController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColumn();
         loadDateToTableView();
+        productReposytory.closeConnectDB();
 
     }
 }

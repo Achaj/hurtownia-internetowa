@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.forgetPassControls">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.changePassControls">
    <children>
-      <Label fx:id="userEmail" layoutX="127.0" layoutY="77.0" text="Email" textFill="#f5f5f5">
+      <Label fx:id="userEmail" layoutX="91.0" layoutY="77.0" prefHeight="27.0" prefWidth="115.0" text="Old Passwod" textFill="#f5f5f5">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <TextField fx:id="login" layoutX="71.0" layoutY="104.0" prefHeight="25.0" prefWidth="155.0" />
+      <PasswordField fx:id="oldPass" layoutX="71.0" layoutY="104.0" prefHeight="25.0" prefWidth="155.0" />
       <Label layoutX="90.0" layoutY="143.0" text="New Password" textFill="#f5f5f5">
          <font>
             <Font name="System Bold" size="18.0" />

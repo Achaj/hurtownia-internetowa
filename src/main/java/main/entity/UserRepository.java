@@ -7,10 +7,9 @@ import javax.persistence.*;
 
 public class UserRepository {
 
-    EntityManagerConnection entityManagerConnection = new EntityManagerConnection();
-    EntityManagerFactory entityManagerFactory = entityManagerConnection.getEntityManagerFactory();
-    EntityManager entityManager = entityManagerConnection.getEntityManager();
-    EntityTransaction entityTransaction = entityManagerConnection.getEntityTransaction();
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DBCONNECTION");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityTransaction entityTransaction = entityManager.getTransaction();
 
 
     public User saveUser(User user) {
@@ -201,7 +200,7 @@ public class UserRepository {
     }
 
     public void closeConnectDB() {
-        entityManagerConnection.closeConnectDB();
+        entityManager.close();
     }
 }
 

@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import main.App;
-import main.entity.EntityManagerConnection;
 import main.entity.User;
 import main.entity.UserRepository;
 
@@ -26,15 +24,13 @@ public class LoginSceneControls{
     public void handleClose(MouseEvent mouseEvent) {
         System.exit(0);
         System.out.print("exit");
+
     }
     @FXML
     public void singUpClick(MouseEvent mouseEvent) throws IOException {
         App.setRoot("newUserScene");
     }
-    @FXML
-    public void loginClick(MouseEvent mouseEvent) throws IOException {
-            App.setRoot("mainSceneShop");
-    }
+
     @FXML
     public void forgetClick(MouseEvent mouseEvent)  throws IOException{
         App.setRoot("forgetPass");
@@ -44,8 +40,10 @@ public class LoginSceneControls{
         UserRepository userRepository=new UserRepository();
         User user= userRepository.getUserByEmail(userEmail.getText());
         Alert alert= new Alert(Alert.AlertType.NONE);
+        PasswordHashing passwordHashing=new PasswordHashing();
+        String hasPass=passwordHashing.doHashing(userPassword.getText());
         if(user!=null){
-        if (user.getPassword().equals(userPassword.getText())){
+        if (user.getPassword().equals(hasPass)){
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Zalogowano Porawnie");
             alert.setContentText("Dziń dobry "+user.getFirstName());
