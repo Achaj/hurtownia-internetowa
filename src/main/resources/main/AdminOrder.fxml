@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -7,7 +8,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AdminOrderController">
   <children>
       <Button ellipsisString="5" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back to Admin Panel" textAlignment="CENTER" />
-      <Label text="Label" />
       <Label layoutX="270.0" layoutY="77.0" prefHeight="50.0" prefWidth="260.0" text="Lista Zamówień" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="33.0" />
@@ -22,8 +22,6 @@
             <TableColumn fx:id="idUserTable" prefWidth="196.0" text="Zamawiający" />
         </columns>
       </TableView>
-      <Button ellipsisString="5" layoutX="691.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#showDetails" prefHeight="75.0" prefWidth="95.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Pokaż Szczegóły Zamówienia" textAlignment="CENTER" wrapText="true" />
-      <Button ellipsisString="5" layoutX="688.0" layoutY="408.0" mnemonicParsing="false" onMouseClicked="#canelOrder" prefHeight="42.0" prefWidth="95.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Anuluj Zamówienie" textAlignment="CENTER" wrapText="true" />
       <TableView fx:id="tableOrderItem" layoutX="388.0" layoutY="127.0" prefHeight="417.0" prefWidth="289.0">
          <columns>
             <TableColumn fx:id="quantity" prefWidth="49.0" text="Ilość" />
@@ -36,7 +34,29 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button ellipsisString="5" layoutX="691.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#canelOrder" prefHeight="42.0" prefWidth="95.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Zmień Kupującego" textAlignment="CENTER" wrapText="true" />
-      <Button ellipsisString="5" layoutX="688.0" layoutY="457.0" mnemonicParsing="false" onMouseClicked="#dellOrder" prefHeight="42.0" prefWidth="95.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Usuń zamówienie" textAlignment="CENTER" wrapText="true" />
+      <VBox layoutX="686.0" layoutY="127.0" prefHeight="373.0" prefWidth="107.0">
+         <children>
+            <Button ellipsisString="5" mnemonicParsing="false" onMouseClicked="#showDetails" prefHeight="75.0" prefWidth="95.0" style="-fx-background-color: #69b020; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 2;" text="Pokaż Szczegóły Zamówienia" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button ellipsisString="5" mnemonicParsing="false" onMouseClicked="#editOrder" prefHeight="50.0" prefWidth="87.0" style="-fx-background-color: #69b020; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 2;" text="Edytuj Zamówienie" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button ellipsisString="5" mnemonicParsing="false" onMouseClicked="#canelOrder" prefHeight="50.0" prefWidth="87.0" style="-fx-background-color: #69b020; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 2;" text="Anuluj Zamówienie" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button ellipsisString="5" mnemonicParsing="false" onMouseClicked="#dellOrder" prefHeight="50.0" prefWidth="87.0" style="-fx-background-color: #69b020; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-width: 2;" text="Usuń zamówienie" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

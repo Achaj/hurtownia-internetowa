@@ -193,11 +193,11 @@ public class NewUserControls {
     }
 
     public void createNewUser(MouseEvent actionEvent) throws IOException {
-
+        PasswordHashing passwordHashing=new PasswordHashing();
         if(validationStatus==true){
             User user=new User();
             user.setEmail(loginEmail.getText());
-            user.setPassword(passwordUser.getText());
+            user.setPassword(passwordHashing.doHashing(passwordUser.getText()));
             user.setFirstName(firstName.getText());
             user.setSecondName(secondName.getText());
             user.setZipCode(zipCode.getText());

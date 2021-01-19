@@ -49,9 +49,9 @@ public class ProductController implements Initializable {
 
     private void loadDateProductType() {
         tableView.getItems().clear();
-        ProductReposytory productReposytory=new ProductReposytory();
-        List<Product> productsType =productReposytory.getAllProductType(typeQuery);
-        productReposytory.closeConnectDB();
+        ProductReposytory reposytory=new ProductReposytory();
+        List<Product> productsType =reposytory.getAllProductType(typeQuery);
+        reposytory.closeConnectDB();
         if(productsType.size()!=0) {
             productObservableList = FXCollections.observableArrayList();
             productObservableList.removeAll(productObservableList);

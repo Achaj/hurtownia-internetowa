@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 public class ProductReposytory {
     //EntityManagerConnection entityManagerConnection = new EntityManagerConnection();
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DBCONNECTION");;
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DBCONNECTION");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     EntityTransaction entityTransaction = entityManager.getTransaction();
 

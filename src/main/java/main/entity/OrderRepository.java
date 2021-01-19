@@ -1,5 +1,6 @@
 package main.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -69,7 +70,44 @@ public class OrderRepository {
         Order order = findOrderById(id);
         try {
             order.setStatus(status);
-            order.setDate(new Date());
+            order.setDate(LocalDate.now());
+            entityManager.merge(order);
+            entityTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityTransaction.rollback();
+        }
+        return order;
+
+    }
+    /*Aby zaktualizować date zamówienia podajemy id i na jaki status zmieniamy
+   data usawiamy datepicker
+    */
+    public Order updateOrderDate(int id, LocalDate localDate) {
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
+        Order order = findOrderById(id);
+        try {
+            order.setDate(localDate);
+            entityManager.merge(order);
+            entityTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityTransaction.rollback();
+        }
+        return order;
+
+    }
+    /*Aby zaktualizować użytkownika zamówienia podajemy id-zamówienia i nowego użykownika
+*/
+    public Order updateOrderUser(int id, User user) {
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
+        Order order = findOrderById(id);
+        try {
+            order.setUser(user);
             entityManager.merge(order);
             entityTransaction.commit();
         } catch (Exception e) {

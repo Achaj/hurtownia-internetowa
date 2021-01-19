@@ -1,19 +1,11 @@
 package main.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 /**
  *
@@ -27,8 +19,7 @@ public class Order implements Serializable  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOrder;
     @Column(name = "util_datetime")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date date;
+    private LocalDate date;
     @ManyToOne
     @JoinColumn(name = "id_user",nullable = true)
     private User user;
@@ -41,7 +32,7 @@ public class Order implements Serializable  {
     public Order() {
     }
 
-    public Order(Date date, User user, String status) {
+    public Order(LocalDate date, User user, String status) {
         this.date = date;
         this.user = user;
         this.status = status;
@@ -56,11 +47,11 @@ public class Order implements Serializable  {
         this.idOrder = idOrder;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

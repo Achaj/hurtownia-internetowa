@@ -11,6 +11,7 @@ import main.entity.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -123,7 +124,7 @@ public class bracketSceneControler implements Initializable {
                 Optional<ButtonType> result = alert.showAndWait();
                 //jesli nie zakceptuje zamówienia zamówienie zostanie nie zamówione
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                    Date currentDate = new Date();
+                    LocalDate currentDate=LocalDate.now();
                     Order order = new Order();
                     order.setUser(user);
                     order.setDate(currentDate);

@@ -83,6 +83,7 @@ public class AdminOrderController  implements Initializable {
     public void loadDateOrderItem(int id_order) {
         OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
         orderItems = orderItemReposytory.getAllOrderItemsOnOneOrder(id_order);
+        orderItemReposytory.closeConnectDB();
         int count=0;
         if (orderItems != null) {
             tableOrderItem.getItems().clear();
@@ -96,11 +97,10 @@ public class AdminOrderController  implements Initializable {
 
         }
         currentPriceOrder.setText(count+" zł");
-        orderItemReposytory.closeConnectDB();
+
     }
 
     public void initializeColumnOrderItem() {
-
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         product.setCellValueFactory(new PropertyValueFactory<>("product"));
     }
@@ -117,13 +117,14 @@ public class AdminOrderController  implements Initializable {
             orderRepository.updateOrderStatus(order.getIdOrder(), "Anulowano");
 
             int quntity = 0;
-            for (OrderItem orderItem : orderItems) {
-                quntity = orderItem.getQuantity();
-                int product_id = orderItem.getProduct().getProductId();
-                Product productINdB = productReposytory.getOneProduct(product_id);
-                productReposytory.updateProductQuantity(product_id, productINdB.getQuantity() + quntity);
+            if(orderItems.size()!=0) {
+                for (OrderItem orderItem : orderItems) {
+                    quntity = orderItem.getQuantity();
+                    int product_id = orderItem.getProduct().getProductId();
+                    Product productINdB = productReposytory.getOneProduct(product_id);
+                    productReposytory.updateProductQuantity(product_id, productINdB.getQuantity() + quntity);
+                }
             }
-
             orderObservableList.clear();
             loadDateOrder();
             tableOrder.refresh();
@@ -162,5 +163,11 @@ public class AdminOrderController  implements Initializable {
             orderObservableList.clear();
             loadDateOrder();
             tableOrder.refresh();
+    }
+
+    public void editOrder(MouseEvent mouseEvent) throws IOException {
+        Order order=tableOrder.getSelectionModel().getSelectedItem();
+        AdminOrderEditController.setOrder(order);
+                App.setRoot("AdminOrderEdit");
     }
 }
