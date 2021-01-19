@@ -1,6 +1,7 @@
 package main;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import main.entity.ProductReposytory;
 import main.entity.User;
@@ -10,6 +11,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainSceneShopController  implements Initializable{
+
+    public Button backAdminPanel;
 
     public void cpuSceneChange(MouseEvent mouseEvent) throws IOException {
         ProductReposytory productReposytory=new ProductReposytory();
@@ -90,6 +93,24 @@ public class MainSceneShopController  implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+      if(user!=null){
+          try {
+              userType();
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+    }
 
+    public void backAdminPanel(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("AdminMainScene");
+    }
+    TemporayUser temporayUser= new TemporayUser();
+    User user=temporayUser.getCurrentUser();
+    private void  userType() throws IOException {
+        if (user.getTypeUser().equals("admin")){
+            backAdminPanel.setVisible(true);
+            backAdminPanel.setDisable(false);
+        }
     }
 }

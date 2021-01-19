@@ -24,6 +24,6 @@
         </columns>
       </TableView>
       <Button layoutX="714.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#addToCurrentBasket" prefHeight="71.0" prefWidth="72.0" text="Dodaj do Koszyka" textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" text="Back" />
+      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back" />
    </children>
 </AnchorPane>

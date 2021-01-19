@@ -133,10 +133,16 @@ public class OrderItemReposytory {
 
     /* ABY USUNĄC REKORD Z ORDERITEM MUSIMY PODAC JEGO ID */
     public void delateOrderItemById(int id) {
-        entityTransaction.begin();
-        OrderItem orderItem = findOrderItemById(id);
-        entityManager.remove(orderItem);
-        entityTransaction.commit();
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }try {
+            OrderItem orderItem = findOrderItemById(id);
+            entityManager.remove(orderItem);
+            entityTransaction.commit();
+        }catch (Exception e){
+            entityTransaction.rollback();
+        }
+
     }
     public void closeConnectDB(){
         entityManager.close();

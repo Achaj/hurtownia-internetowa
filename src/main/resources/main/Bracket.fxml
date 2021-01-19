@@ -22,7 +22,7 @@
         </columns>
       </TableView>
       <Button layoutX="720.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#addToCurrentBasket" prefHeight="70.0" prefWidth="80.0" text="Zakceptuj zamówienie" textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" text="Back" />
+      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back" />
       <Button layoutX="720.0" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#dellAllCurentBracket" prefHeight="70.0" prefWidth="80.0" text="Anuluj zamówienie" textAlignment="CENTER" wrapText="true" />
       <Button layoutX="720.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#dellProduct" prefHeight="70.0" prefWidth="80.0" text="Usuń produkt z koszyka " textAlignment="CENTER" wrapText="true" />
       <Button layoutX="720.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#updateQuantity" prefHeight="70.0" prefWidth="80.0" text="Edytuj Ilość" textAlignment="CENTER" wrapText="true" />

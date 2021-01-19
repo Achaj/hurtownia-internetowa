@@ -70,7 +70,7 @@
             <TextField fx:id="city" onAction="#checkCity" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="street" onAction="#checkStreet" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="phoneNumber" onAction="#checkPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Button fx:id="CreateNewUserButton" mnemonicParsing="false" onMouseClicked="#createNewUser" prefHeight="59.0" prefWidth="180.0" text="Create New User" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Button fx:id="CreateNewUserButton" mnemonicParsing="false" onMouseClicked="#createNewUser" prefHeight="59.0" prefWidth="180.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Create New User" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <Label text="Number" textFill="#fcf8f8" textOverrun="CLIP" GridPane.rowIndex="8">
                <font>
                   <Font name="Arial Bold" size="18.0" />
@@ -88,6 +88,6 @@
             <Font name="Arial Bold" size="27.0" />
          </font>
       </Label>
-      <Button fx:id="CreateNewUserButton1" layoutX="32.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#changeLoginScene" prefHeight="32.0" prefWidth="135.0" text="Back" />
+      <Button fx:id="CreateNewUserButton1" layoutX="32.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#changeLoginScene" prefHeight="32.0" prefWidth="135.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back" />
    </children>
 </AnchorPane>

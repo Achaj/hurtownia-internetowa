@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AdminMainController">
+  <children>
+      <Label fx:id="labelHello" alignment="CENTER" layoutX="202.0" layoutY="14.0" prefHeight="54.0" prefWidth="365.0" text="Admin Panel" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <GridPane alignment="CENTER" layoutX="177.0" layoutY="83.0" prefHeight="435.0" prefWidth="446.0" style="-fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 10;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="200.0" onMouseClicked="#changeToAllOrder" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@mainScepepictures/orderAdmin.png" />
+               </image>
+               <effect>
+                  <DropShadow height="32.86" radius="30.015" spread="0.13" width="89.2">
+                     <color>
+                        <Color red="0.01937134563922882" green="0.10977095365524292" blue="0.6973684430122375" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#changeToAllUser" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@mainScepepictures/userAdmin.png" />
+               </image>
+               <effect>
+                  <DropShadow height="32.86" radius="30.015" spread="0.13" width="89.2">
+                     <color>
+                        <Color red="0.01937134563922882" green="0.10977095365524292" blue="0.6973684430122375" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" onMouseClicked="#changeToAllProduct" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@mainScepepictures/adminComputer.png" />
+               </image>
+               <effect>
+                  <DropShadow height="32.86" radius="30.015" spread="0.13" width="89.2">
+                     <color>
+                        <Color red="0.01937134563922882" green="0.10977095365524292" blue="0.6973684430122375" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" nodeOrientation="INHERIT" onMouseClicked="#changeToMainSceneShop" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@mainScepepictures/adminShopScene.png" />
+               </image>
+               <effect>
+                  <DropShadow height="32.86" radius="30.015" spread="0.13" width="89.2">
+                     <color>
+                        <Color red="0.01937134563922882" green="0.10977095365524292" blue="0.6973684430122375" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+         </children>
+      </GridPane>
+      <ImageView fitHeight="70.0" fitWidth="53.0" layoutX="733.0" layoutY="15.0" onMouseClicked="#changeToAdminSetting" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@mainScepepictures/login.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

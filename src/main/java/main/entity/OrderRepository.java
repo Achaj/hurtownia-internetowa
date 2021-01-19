@@ -81,18 +81,18 @@ public class OrderRepository {
     }
 
     /* ABY USUNĄC REKORD Z ORDER MUSIMY PODAC JEGO ID */
-    public void delateOrderItemById(int id) {
+    public void delateOrderById(int id) {
         if(!entityTransaction.isActive()) {
             entityTransaction.begin();
-        }
-        Order order = findOrderById(id);
-        if (entityManager.contains(order)) {
+        }try {
+            Order order = findOrderById(id);
             entityManager.remove(order);
-        } else {
-            entityManager.merge(order);
+            entityTransaction.commit();
+        }catch (Exception  e){
+            entityTransaction.rollback();
         }
-        entityTransaction.commit();
-    }
+        }
+
     public void closeConnectDB(){
         entityManager.close();
     }

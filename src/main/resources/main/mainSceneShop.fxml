@@ -9,7 +9,7 @@
    <children>
       <TextField layoutX="62.0" layoutY="104.0" prefHeight="25.0" prefWidth="524.0" />
       <Button layoutX="590.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Wyszukaj" />
-      <GridPane blendMode="SRC_ATOP" gridLinesVisible="true" layoutX="62.0" layoutY="149.0" prefHeight="322.0" prefWidth="677.0" style="-fx-border-radius: 0; -fx-border-width: 15px; -fx-border-color: white; -fx-background-color: #696f78;" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="149.0">
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="62.0" layoutY="149.0" prefHeight="322.0" prefWidth="677.0" style="-fx-border-radius: 0; -fx-border-width: 15px; -fx-border-color: white; -fx-background-color: #696f78;" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="149.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -21,7 +21,7 @@
           <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="BOTTOM" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="100.0" fitWidth="229.0" focusTraversable="true" nodeOrientation="INHERIT" onMouseClicked="#cpuSceneChange" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 223;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <ImageView fitHeight="100.0" fitWidth="229.0" focusTraversable="true" onMouseClicked="#cpuSceneChange" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@mainScepepictures/cpu.png" />
                </image>
@@ -84,6 +84,7 @@
             <Image url="@mainScepepictures/koszyk.png" />
          </image>
       </ImageView>
+      <Button fx:id="backAdminPanel" disable="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backAdminPanel" style="-fx-background-radius: 45;" text="Back To Admin Panel" visible="false" wrapText="true" />
        
      
    </children>

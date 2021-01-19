@@ -49,7 +49,11 @@ public class LoginSceneControls{
             alert.setContentText("Dziń dobry "+user.getFirstName());
             TemporayUser temporayUser=new TemporayUser();
             temporayUser.setCurrentUser(user);
-            App.setRoot("mainSceneShop");
+            if(user.getTypeUser().equals("admin")){
+                App.setRoot("AdminMainScene");
+            }else {
+                App.setRoot("mainSceneShop");
+            }
         }else{
 
             alert.setAlertType( Alert.AlertType.INFORMATION);
