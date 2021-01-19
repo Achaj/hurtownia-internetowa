@@ -1,7 +1,7 @@
 # hurtownia-internetowa
 W trakcie pracy
 
-Technologia
+#Technologia użyte
 -java jdk 11
 -java fx 13
 -hiberate core 5.4.27 final
