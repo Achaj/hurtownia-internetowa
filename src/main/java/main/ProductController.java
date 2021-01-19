@@ -34,13 +34,8 @@ public class ProductController implements Initializable {
     public TableColumn<Product, Integer> quantity;
     @FXML
     public TableColumn<Product,String> price;
-    public TextField searingModel;
 
-    ProductReposytory productReposytory=new ProductReposytory();
-    List<Product> productsType =productReposytory.getAllProductType(typeQuery);
-    List<Product> productsModel =productReposytory.getAllByProductName(nameQuery);
-
-
+    private TextField searingModel;
     ObservableList<Product> productObservableList;
     private static String typeQuery;
     private static String nameQuery;
@@ -54,6 +49,9 @@ public class ProductController implements Initializable {
 
     private void loadDateProductType() {
         tableView.getItems().clear();
+        ProductReposytory productReposytory=new ProductReposytory();
+        List<Product> productsType =productReposytory.getAllProductType(typeQuery);
+        productReposytory.closeConnectDB();
         if(productsType.size()!=0) {
             productObservableList = FXCollections.observableArrayList();
             productObservableList.removeAll(productObservableList);
@@ -65,10 +63,12 @@ public class ProductController implements Initializable {
             alert.show();
         }
 
-
     }
     private void loadDateProductModel(){
         tableView.getItems().clear();
+        ProductReposytory productReposytory=new ProductReposytory();
+        List<Product> productsModel =productReposytory.getAllByProductName(nameQuery);
+        productReposytory.closeConnectDB();
         if(productsModel.size()!=0){
             productObservableList = FXCollections.observableArrayList();
             productObservableList.removeAll(productObservableList);
@@ -143,8 +143,6 @@ public class ProductController implements Initializable {
         }else if (nameQuery!=null){
             loadDateProductModel();
         }
-
-        productReposytory.closeConnectDB();
 
     }
 
