@@ -52,21 +52,33 @@ public class ProductController implements Initializable {
         nameQuery=name;
     }
 
-    private void loadDateToTableView() {
+    private void loadDateProductType() {
         tableView.getItems().clear();
-        if(productsType !=null) {
+        if(productsType.size()!=0) {
             productObservableList = FXCollections.observableArrayList();
             productObservableList.removeAll(productObservableList);
             productObservableList.addAll(productsType);
             tableView.getItems().addAll(productObservableList);
+        }else {
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Nie znaleziono produktów w określonej kategoi ->"+typeQuery);
+            alert.show();
         }
-        if(productsModel!=null){
+
+
+    }
+    private void loadDateProductModel(){
+        tableView.getItems().clear();
+        if(productsModel.size()!=0){
             productObservableList = FXCollections.observableArrayList();
             productObservableList.removeAll(productObservableList);
             productObservableList.addAll(productsModel);
             tableView.getItems().addAll(productObservableList);
+        }else {
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Nie znalezion takiego modelu ->"+nameQuery);
+            alert.show();
         }
-
     }
     private void initializeColumn(){
         type.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
@@ -127,9 +139,9 @@ public class ProductController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColumn();
         if(typeQuery!=null) {
-            loadDateToTableView();
+            loadDateProductType();
         }else if (nameQuery!=null){
-            loadDateToTableView();
+            loadDateProductModel();
         }
 
         productReposytory.closeConnectDB();
@@ -142,11 +154,17 @@ public class ProductController implements Initializable {
             ProductReposytory productReposytory=new ProductReposytory();
             List<Product> productsModelType =productReposytory.getAllByProductNameAndType(searingModel.getText(),typeQuery);
             productReposytory.closeConnectDB();
-            productObservableList = FXCollections.observableArrayList();
-            productObservableList.removeAll(productObservableList);
-            productObservableList.addAll(productsModelType);
-            tableView.getItems().addAll(productObservableList);
-            tableView.refresh();
+            if(productsModelType.size()!=0){
+                productObservableList = FXCollections.observableArrayList();
+                productObservableList.removeAll(productObservableList);
+                productObservableList.addAll(productsModelType);
+                tableView.getItems().addAll(productObservableList);
+                tableView.refresh();
+            }else {
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Nie znalezion takiego model w kategori ->"+typeQuery);
+                alert.show();
+            }
         }
     }
 }
