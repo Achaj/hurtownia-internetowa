@@ -41,6 +41,25 @@ public class ProductReposytory {
         TypedQuery<Product> productTypedQuery = entityManager.createQuery("SELECT p FROM Product p ", Product.class);
         return productTypedQuery.getResultList();
     }
+    /*Pobranie listy wszystkich Produktów o wybranym modelu*/
+    public List<Product> getAllByProductName(String model) {
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
+        TypedQuery<Product> productTypedQuery = entityManager.createQuery("SELECT p FROM Product p Where p.model=:l", Product.class);
+        productTypedQuery.setParameter("l", model);
+        return productTypedQuery.getResultList();
+    }
+    /*Pobranie listy wszystkich Produktów o wybranym modelu*/
+    public List<Product> getAllByProductNameAndType(String model,String type) {
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
+        TypedQuery<Product> productTypedQuery = entityManager.createQuery("SELECT p FROM Product p Where p.model=:l And  p.type=:t", Product.class);
+        productTypedQuery.setParameter("l", model);
+        productTypedQuery.setParameter("t", type);
+        return productTypedQuery.getResultList();
+    }
 
     /*Pobranie listy  Produkt "Jednogo " po id*/
     public Product getOneProduct(int id) {

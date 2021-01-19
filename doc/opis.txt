@@ -28,6 +28,5 @@
 
     status-zamówienia(zamówiene zapłacone wysłane)
 
---------------------
-gotowe kalsy
+
 

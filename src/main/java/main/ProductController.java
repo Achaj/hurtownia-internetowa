@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import main.entity.Product;
@@ -14,7 +15,6 @@ import main.entity.ProductReposytory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,23 +34,39 @@ public class ProductController implements Initializable {
     public TableColumn<Product, Integer> quantity;
     @FXML
     public TableColumn<Product,String> price;
+    public TextField searingModel;
 
     ProductReposytory productReposytory=new ProductReposytory();
-    List<Product> products=productReposytory.getAllProductType(typeQuery);
+    List<Product> productsType =productReposytory.getAllProductType(typeQuery);
+    List<Product> productsModel =productReposytory.getAllByProductName(nameQuery);
+
+
     ObservableList<Product> productObservableList;
     private static String typeQuery;
+    private static String nameQuery;
+
     public void setTypeQurt(String type){
         typeQuery=type;
     }
+    public void setNameQuery(String name){
+        nameQuery=name;
+    }
 
     private void loadDateToTableView() {
-
-        if(products!=null) {
+        tableView.getItems().clear();
+        if(productsType !=null) {
             productObservableList = FXCollections.observableArrayList();
             productObservableList.removeAll(productObservableList);
-            productObservableList.addAll(products);
+            productObservableList.addAll(productsType);
             tableView.getItems().addAll(productObservableList);
         }
+        if(productsModel!=null){
+            productObservableList = FXCollections.observableArrayList();
+            productObservableList.removeAll(productObservableList);
+            productObservableList.addAll(productsModel);
+            tableView.getItems().addAll(productObservableList);
+        }
+
     }
     private void initializeColumn(){
         type.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
@@ -110,8 +126,27 @@ public class ProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColumn();
-        loadDateToTableView();
+        if(typeQuery!=null) {
+            loadDateToTableView();
+        }else if (nameQuery!=null){
+            loadDateToTableView();
+        }
+
         productReposytory.closeConnectDB();
 
+    }
+
+    public void searchProduct(MouseEvent mouseEvent) {
+        if(searingModel!=null) {
+            tableView.getItems().clear();
+            ProductReposytory productReposytory=new ProductReposytory();
+            List<Product> productsModelType =productReposytory.getAllByProductNameAndType(searingModel.getText(),typeQuery);
+            productReposytory.closeConnectDB();
+            productObservableList = FXCollections.observableArrayList();
+            productObservableList.removeAll(productObservableList);
+            productObservableList.addAll(productsModelType);
+            tableView.getItems().addAll(productObservableList);
+            tableView.refresh();
+        }
     }
 }

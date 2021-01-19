@@ -6,8 +6,8 @@
 
 <AnchorPane minWidth="800.0" prefHeight="550.0" prefWidth="750.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ProductController">
    <children>
-      <TextField layoutX="82.0" layoutY="73.0" prefHeight="25.0" prefWidth="467.0" />
-      <Button layoutX="549.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Wyszukaj" />
+      <TextField fx:id="searingModel" layoutX="82.0" layoutY="73.0" prefHeight="25.0" prefWidth="467.0" />
+      <Button layoutX="549.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#searchProduct" prefHeight="25.0" prefWidth="149.0" text="Wyszukaj" />
       <Label alignment="CENTER" layoutX="47.0" layoutY="14.0" prefHeight="51.0" prefWidth="677.0" text="Hurtownia Sprzetu Komputerowego" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
