@@ -145,13 +145,29 @@ public class UserRepository {
         return status;
     }
 
-    public User changeAccountTypeToAdmin(int id) {
+    public User changeAccountType(int id,String type) {
         if(!entityTransaction.isActive()) {
             entityTransaction.begin();
         }
         User user = findUserById(id);
         try {
-            user.setTypeUser("admin");
+            user.setTypeUser(type);
+            entityManager.merge(user);
+            entityTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityTransaction.rollback();
+        }
+        return user;
+    }
+
+    public User changeEmail(int id,String emial) {
+        if(!entityTransaction.isActive()) {
+            entityTransaction.begin();
+        }
+        User user = findUserById(id);
+        try {
+            user.setEmail(emial);
             entityManager.merge(user);
             entityTransaction.commit();
         } catch (Exception e) {
@@ -172,19 +188,36 @@ public class UserRepository {
         boolean status=false;
         if (entityManager.contains(user)) {
             try {
-                //jeśli użytkownik posiada zamówienie id użytownika zostaje
-                //ustawiona na null a status jeśli nie był zakończony na anulowano
-                if(orders!=null) {
+                //iteruje po lisce zamówień
+                if(orders.size()!=0) {
                     for (Order order : orders) {
-                        if (!order.getStatus().equals("zakończono")) {
-                            order.setStatus("Anulowano");
+                        //jeśli zamówienie nie jest anulowane nie zakończone jeszcze
+
+                        if (!order.getStatus().equals("Anulowano")&&!order.getStatus().equals("zakończono")) {
+                            orderRepository.updateOrderStatus(order.getIdOrder(), "Anulowano"); //ustawia status zamówienia na anulowany
+                            orderRepository.closeConnectDB(); //zamykania połączenia do tablli zamówenia
+                            OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
+                            List<OrderItem> orderItems = orderItemReposytory.getAllOrderItemsOnOneOrder(order.getIdOrder()); //pobiera listę zamówienia
+                            if (orderItems.size() != 0) {
+                                int quntity = 0;
+                                ProductReposytory productReposytory = new ProductReposytory();
+                                for (OrderItem orderItem : orderItems) {
+                                    quntity = orderItem.getQuantity(); //pobiera ilośc produktów z zamówienia
+                                    Product productINdB = productReposytory.getOneProduct(orderItem.getProduct().getIdProduct()); //pobiera dany produkt
+                                    productReposytory.updateProductQuantity(orderItem.getProduct().getIdProduct(), productINdB.getQuantity() + quntity); //dodaje do magazynu produknu zz anulowanego zamówienia
+                                }
+                                productReposytory.closeConnectDB();  //zamykanie połączenia do tabeli Produkty
+                            }
+
                         }
                         order.setUser(null);
                         entityManager.merge(order);
                     }
+
                 }
+
                 entityManager.remove(user);
-               entityTransaction.commit();
+                entityTransaction.commit();
                 status=true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -202,5 +235,7 @@ public class UserRepository {
     public void closeConnectDB() {
         entityManager.close();
     }
+
+
 }
 

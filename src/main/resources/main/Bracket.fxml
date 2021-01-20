@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -11,7 +12,7 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="tableView" layoutX="93.0" layoutY="96.0" prefHeight="391.0" prefWidth="615.0">
+      <TableView fx:id="tableView" layoutX="44.0" layoutY="100.0" prefHeight="391.0" prefWidth="615.0">
         <columns>
             <TableColumn fx:id="type" prefWidth="49.0" text="Typ" />
           <TableColumn fx:id="producer" prefWidth="76.0" text="Producent" />
@@ -21,13 +22,37 @@
             <TableColumn fx:id="price" minWidth="0.0" prefWidth="67.0" text="Cena" />
         </columns>
       </TableView>
-      <Button layoutX="720.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#addToCurrentBasket" prefHeight="70.0" prefWidth="80.0" text="Zakceptuj zamówienie" textAlignment="CENTER" wrapText="true" />
       <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back" />
-      <Button layoutX="720.0" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#dellAllCurentBracket" prefHeight="70.0" prefWidth="80.0" text="Anuluj zamówienie" textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="720.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#dellProduct" prefHeight="70.0" prefWidth="80.0" text="Usuń produkt z koszyka " textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="720.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#updateQuantity" prefHeight="70.0" prefWidth="80.0" text="Edytuj Ilość" textAlignment="CENTER" wrapText="true" />
-      <TextField fx:id="quantityEdit" layoutX="720.0" layoutY="96.0" prefHeight="25.0" prefWidth="80.0" promptText="ilość" />
       <Label layoutX="437.0" layoutY="512.0" text="Wartość Zamówienia" textFill="WHITE" />
       <TextField fx:id="totalPrice" editable="false" layoutX="559.0" layoutY="508.0" promptText="zł" />
+      <VBox layoutX="674.0" layoutY="100.0" prefHeight="398.0" prefWidth="111.0">
+         <children>
+            <TextField fx:id="quantityEdit" prefHeight="25.0" prefWidth="80.0" promptText="ilość">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onMouseClicked="#updateQuantity" prefHeight="54.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 3;" text="Edytuj Ilość" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#dellProduct" prefHeight="54.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 3;" text="Usuń produkt  " textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#dellAllCurentBracket" prefHeight="54.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 3;" text="Anuluj zamówienie" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#addToCurrentBasket" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 3;" text="Zakceptuj zamówienie" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

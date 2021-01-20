@@ -33,11 +33,11 @@ public class NewUserControls {
 
     private boolean validationStatus=false;
     private static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,30}$";
-    private static final String REGEX_NAME = "[a-zA-Z]{3,20}$";
+    private static final String REGEX_NAME = "[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{3,20}$";
     private static final String REGEX_ZIPCODE = "\\d{2}(-\\d{3})?";
-    private static final String REGEX_STREET_SHORT = "[-a-zA-Z]{3,20}$";
+    private static final String REGEX_STREET_SHORT = "[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{3,20}$";
     private static final String REGEX_STREET_MISSING = "(-)";
-    private static final String REGEX_STREET_LONG = "^.*?\\s[N]{0,1}([-a-zA-Z0-9]+)\\s*\\w*$";
+    private static final String REGEX_STREET_LONG = "^.*?\\s[N]{0,1}([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ0-9]+)\\s*\\w*$";
     private static final String REGEX_PHONE_NUMBER = "[0-9]{6,10}$";
     private static final String REGEX_STREET_NUMBER = "[a-z0-9]{1,5}$";
 
@@ -58,7 +58,6 @@ public class NewUserControls {
     }
 
     public void checkPassword(ActionEvent actionEvent) {
-
        if(Pattern.matches(REGEX_PASSWORD,passwordUser.getText())){
             validationStatus=true;
            validated.setText("Hasło prawidłowe");
@@ -206,19 +205,28 @@ public class NewUserControls {
             user.setNumberInStreet(number.getText());
             user.setPhoneNumber(phoneNumber.getText());
             System.out.println(user.toString());
-
             UserRepository userRepository=new UserRepository();
             userRepository.saveUser(user);
-            App.setRoot("loginScene");
+            userRepository.closeConnectDB();
+            setSceneAfterCreateAcount();
+
 
         }else{
-
-            System.out.println("musisz poprawić coś");
-
-
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Podaj wszystkie dane prawidłowo");
+            alert.show();
         }
     }
 
+    public void setSceneAfterCreateAcount() throws IOException {
+        TemporayUser temporayUser=new TemporayUser();
+        User user=temporayUser.getCurrentUser();
+        if(user!=null&&user.getTypeUser().equals("admin")){
+            App.setRoot("AdminUsers");
+        }else {
+            App.setRoot("loginScene");
+        }
+    }
 
     public void changeLoginScene(MouseEvent mouseEvent) throws IOException {
         App.setRoot("loginScene");

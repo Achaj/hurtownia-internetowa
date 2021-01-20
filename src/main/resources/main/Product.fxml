@@ -19,11 +19,11 @@
           <TableColumn fx:id="producer" prefWidth="76.0" text="Producent" />
           <TableColumn fx:id="model" prefWidth="55.0" text="Model" />
             <TableColumn fx:id="info" prefWidth="277.0" text="Info" />
-            <TableColumn fx:id="quantity" minWidth="0.0" prefWidth="42.0" text="Ilość" />
-            <TableColumn fx:id="price" minWidth="0.0" prefWidth="67.0" text="Cena" />
+            <TableColumn fx:id="quantity" minWidth="0.0" prefWidth="83.0" text="Ilość" />
+            <TableColumn fx:id="price" minWidth="0.0" prefWidth="74.0" text="Cena" />
         </columns>
       </TableView>
-      <Button layoutX="714.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#addToCurrentBasket" prefHeight="71.0" prefWidth="72.0" text="Dodaj do Koszyka" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="714.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#addToCurrentBasket" prefHeight="71.0" prefWidth="72.0" style="-fx-background-color: #69b020; -fx-border-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 3;" text="Dodaj do Koszyka" textAlignment="CENTER" wrapText="true" />
       <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back" />
    </children>
 </AnchorPane>

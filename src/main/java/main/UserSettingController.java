@@ -100,7 +100,7 @@ public class UserSettingController  implements Initializable {
             alert.setHeaderText("Opracja została anulowana");
             alert.show();
         }
-       // userRepositor.closeConnectDB();
+       userRepositor.closeConnectDB();
     }
 
     public void changeEmail(MouseEvent mouseEvent) {
@@ -109,7 +109,6 @@ public class UserSettingController  implements Initializable {
 
         if(newEmail.getText().equals(newEmailConfirm.getText())) {
             UserRepository userRepositor = new UserRepository();
-
                 if(userRepositor.updateEmailById(user.getIdUser(), newEmail.getText())==false) {
                   alert.setAlertType(Alert.AlertType.WARNING);
                     alert.setContentText("Taki adres email jest już zajęty!");

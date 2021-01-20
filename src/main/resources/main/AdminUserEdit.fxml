@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AdminUserEditController">
+   <children>
+      <Label alignment="CENTER" layoutX="47.0" layoutY="14.0" prefHeight="51.0" prefWidth="677.0" text="Hurtownia Sprzetu Komputerowego" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back" />
+      <VBox layoutX="615.0" layoutY="73.0" prefHeight="391.0" prefWidth="109.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#editPass" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 3; -fx-border-color: white;" text="Edytuj Hasło" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#editName" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 3; -fx-border-color: white;" text="Edytuj Imię i Nazwisko" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="20.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#etitAdres" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 3; -fx-border-color: white;" text="Edytuj Adres" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="20.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#editEmail" prefHeight="50.0" prefWidth="136.0" style="-fx-background-color: #69b020; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 3; -fx-border-color: white;" text="Edytuj Email" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="20.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#editPhone" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #69b020; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 3; -fx-border-color: white;" text="Edytuj Telefonu" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="231.0" layoutY="73.0" prefHeight="530.0" prefWidth="385.0" style="-fx-background-color: #1b4d80; -fx-background-radius: 5;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="17.0" prefWidth="598.0" text="Dane Użytkownika" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="598.0" text="Id Użytkownika" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="id" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+            <Label layoutX="20.0" layoutY="102.0" prefHeight="17.0" prefWidth="598.0" text="Email" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="emil" layoutX="20.0" layoutY="119.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="598.0" text="Imię" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="name" layoutX="10.0" layoutY="27.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+            <Label layoutX="10.0" layoutY="52.0" prefHeight="17.0" prefWidth="598.0" text="Nazwisko" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="secondName" layoutX="10.0" layoutY="69.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+            <Label layoutX="10.0" layoutY="94.0" prefHeight="17.0" prefWidth="598.0" text="Hasło" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <PasswordField fx:id="pass" layoutX="10.0" layoutY="111.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></PasswordField>
+            <Label layoutX="10.0" layoutY="136.0" prefHeight="17.0" prefWidth="598.0" text="Kod pocztowy" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="zipCode" layoutX="10.0" layoutY="153.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+            <Label layoutX="10.0" layoutY="178.0" prefHeight="17.0" prefWidth="598.0" text="Miasto" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="city" layoutX="10.0" layoutY="195.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+            <Label layoutX="10.0" layoutY="220.0" prefHeight="17.0" prefWidth="598.0" text="Ulica" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="street" layoutX="10.0" layoutY="237.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+            <Label layoutX="10.0" layoutY="262.0" prefHeight="17.0" prefWidth="598.0" text="Numer na Ulicy" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="streetNumber" layoutX="10.0" layoutY="279.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+            <Label layoutX="10.0" layoutY="304.0" prefHeight="17.0" prefWidth="598.0" text="Numer Kontaktowy" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="phone" layoutX="10.0" layoutY="321.0" prefHeight="17.0" prefWidth="287.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></TextField>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

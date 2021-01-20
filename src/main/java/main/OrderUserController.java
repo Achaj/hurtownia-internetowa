@@ -139,7 +139,6 @@ public class OrderUserController implements Initializable {
             ProductReposytory productReposytory = new ProductReposytory();
             OrderRepository orderRepository = new OrderRepository();
             orderRepository.updateOrderStatus(order.getIdOrder(), "Anulowano");
-
             int quntity = 0;
             for (OrderItem orderItem : orderItems) {
                 quntity = orderItem.getQuantity();
@@ -149,6 +148,8 @@ public class OrderUserController implements Initializable {
                         productReposytory.updateProductQuantity(product.getIdProduct(), productINdB.getQuantity() + quntity);
                     }
                 }
+                productReposytory.closeConnectDB();
+                orderRepository.closeConnectDB();
             }
             orderObservableList.clear();
             loadDateOrder();

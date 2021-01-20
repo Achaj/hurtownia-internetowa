@@ -12,7 +12,7 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="tableProduct" layoutX="47.0" layoutY="120.0" prefHeight="391.0" prefWidth="345.0">
+      <TableView fx:id="tableProduct" layoutX="47.0" layoutY="120.0" prefHeight="391.0" prefWidth="345.0" style="-fx-background-radius: 5;">
         <columns>
             <TableColumn fx:id="idProductTable" prefWidth="40.0" text="Id" />
             <TableColumn fx:id="type" prefWidth="37.0" text="Typ" />
@@ -57,7 +57,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox layoutX="400.0" layoutY="120.0" prefHeight="391.0" prefWidth="260.0">
+      <VBox layoutX="400.0" layoutY="120.0" prefHeight="391.0" prefWidth="260.0" style="-fx-background-color: #1b4d80; -fx-background-radius: 5;">
          <children>
             <Label prefHeight="20.0" prefWidth="271.0" text="Id Produktu" textFill="WHITE">
                <font>

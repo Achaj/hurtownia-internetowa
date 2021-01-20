@@ -84,7 +84,7 @@
             <Image url="@mainScepepictures/koszyk.png" />
          </image>
       </ImageView>
-      <Button fx:id="backAdminPanel" disable="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backAdminPanel" style="-fx-background-radius: 45;" text="Back To Admin Panel" visible="false" wrapText="true" />
+      <Button fx:id="backAdminPanel" disable="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backAdminPanel" style="-fx-background-radius: 5; -fx-background-color: #69b020;" text="Back To Admin Panel" visible="false" wrapText="true" />
        
      
    </children>
