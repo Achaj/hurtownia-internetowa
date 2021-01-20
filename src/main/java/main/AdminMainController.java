@@ -21,11 +21,13 @@ public class AdminMainController implements Initializable {
         App.setRoot("AdminOrder");
     }
 
-    public void changeToAllUser(MouseEvent mouseEvent) {
+    public void changeToAllUser(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("AdminUsers");
     }
 
-    public void changeToAllProduct(MouseEvent mouseEvent) {
-    }
+    public void changeToAllProduct(MouseEvent mouseEvent) throws IOException {
+            App.setRoot("AdminProduct");
+        }
 
     public void changeToAdminSetting(MouseEvent mouseEvent) throws IOException {
         App.setRoot("AdminSetting");

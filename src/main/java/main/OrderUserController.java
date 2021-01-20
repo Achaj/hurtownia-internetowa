@@ -41,7 +41,7 @@ public class OrderUserController implements Initializable {
 
     public void loadDateOrder() {
         OrderRepository orderRepository = new OrderRepository();
-        List<Order> orders = orderRepository.getAllOrderOfOneUser(user.getId());
+        List<Order> orders = orderRepository.getAllOrderOfOneUser(user.getIdUser());
         if (orders != null) {
             orderObservableList = FXCollections.observableArrayList();
             orderObservableList.removeAll(orderObservableList);
@@ -108,12 +108,12 @@ public class OrderUserController implements Initializable {
             productObservableList.removeAll(productObservableList);
             //productTable.refresh();
             for (OrderItem orderItem : orderItems) {
-                productObservableList.add(productReposytory.getOneProduct(orderItem.getProduct().getProductId()));
+                productObservableList.add(productReposytory.getOneProduct(orderItem.getProduct().getIdProduct()));
             }
             for (OrderItem orderItem : orderItems) {
                 quntity=orderItem.getQuantity();
                 for(Product product:productObservableList){
-                    if(product.getProductId()==orderItem.getProduct().getProductId()){
+                    if(product.getIdProduct()==orderItem.getProduct().getIdProduct()){
                         count=count+(quntity*product.getPrice());
                     }
                 }
@@ -144,9 +144,9 @@ public class OrderUserController implements Initializable {
             for (OrderItem orderItem : orderItems) {
                 quntity = orderItem.getQuantity();
                 for (Product product : productObservableList) {
-                    if (product.getProductId() == orderItem.getProduct().getProductId()) {
-                        Product productINdB = productReposytory.getOneProduct(product.getProductId());
-                        productReposytory.updateProductQuantity(product.getProductId(), productINdB.getQuantity() + quntity);
+                    if (product.getIdProduct() == orderItem.getProduct().getIdProduct()) {
+                        Product productINdB = productReposytory.getOneProduct(product.getIdProduct());
+                        productReposytory.updateProductQuantity(product.getIdProduct(), productINdB.getQuantity() + quntity);
                     }
                 }
             }

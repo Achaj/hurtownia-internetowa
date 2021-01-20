@@ -13,7 +13,7 @@ public class ProductReposytory {
         if(!entityTransaction.isActive()) {
             entityTransaction.begin();
         }
-        if (product.getProductId() == 0) {
+        if (product.getIdProduct() == 0) {
             try {
                 entityManager.persist(product);
             } catch (Exception e) {
@@ -146,4 +146,6 @@ public class ProductReposytory {
     public void closeConnectDB(){
         entityManager.close();
     }
+
+
 }

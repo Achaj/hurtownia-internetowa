@@ -17,7 +17,7 @@ public class UserRepository {
             entityTransaction.begin();
         }
         try {
-            if (user.getId() == 0) {
+            if (user.getIdUser() == 0) {
                 entityManager.persist(user);
             } else {
                 user = entityManager.merge(user);

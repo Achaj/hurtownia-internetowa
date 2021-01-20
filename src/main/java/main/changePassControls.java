@@ -29,7 +29,7 @@ public class changePassControls {
                 if (password.getText().equals(confirmPassword.getText()) || Pattern.matches(REGEX_PASSWORD, password.getText())) {
                     String hasPass = passwordHashing.doHashing(password.getText());
                     UserRepository userRepository = new UserRepository();
-                    userRepository.updatePasswordUserById(user.getId(), hasPass);
+                    userRepository.updatePasswordUserById(user.getIdUser(), hasPass);
                     userRepository.closeConnectDB();
                     alert.setHeaderText("Hasło zotało zmienione");
                     alert.show();

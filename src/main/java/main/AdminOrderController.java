@@ -120,7 +120,7 @@ public class AdminOrderController  implements Initializable {
             if(orderItems.size()!=0) {
                 for (OrderItem orderItem : orderItems) {
                     quntity = orderItem.getQuantity();
-                    int product_id = orderItem.getProduct().getProductId();
+                    int product_id = orderItem.getProduct().getIdProduct();
                     Product productINdB = productReposytory.getOneProduct(product_id);
                     productReposytory.updateProductQuantity(product_id, productINdB.getQuantity() + quntity);
                 }
@@ -145,7 +145,7 @@ public class AdminOrderController  implements Initializable {
             if(!order.getStatus().equals("Anulowano")&&orderItems!=null) {
                 for (OrderItem orderItem : orderItems) {
                     quntity = orderItem.getQuantity();
-                    int product_id = orderItem.getProduct().getProductId();
+                    int product_id = orderItem.getProduct().getIdProduct();
                     Product productINdB = productReposytory.getOneProduct(product_id);
                     productReposytory.updateProductQuantity(product_id, productINdB.getQuantity() + quntity);
                 }

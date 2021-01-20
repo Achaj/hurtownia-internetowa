@@ -63,8 +63,8 @@ public class AdminOrderEditController implements Initializable {
         if (orderItem!=null) {
             OrderItemReposytory orderItemReposytory=new OrderItemReposytory();
             ProductReposytory productReposytory = new ProductReposytory();
-            Product product = productReposytory.getOneProduct(orderItem.getProduct().getProductId());
-            productReposytory.updateProductQuantity(product.getProductId(), product.getQuantity() + orderItem.getQuantity());
+            Product product = productReposytory.getOneProduct(orderItem.getProduct().getIdProduct());
+            productReposytory.updateProductQuantity(product.getIdProduct(), product.getQuantity() + orderItem.getQuantity());
             productReposytory.closeConnectDB();
             orderItemReposytory.delateOrderItemById(orderItem.getIdOrderItem());
             orderItemReposytory.closeConnectDB();
@@ -77,7 +77,7 @@ public class AdminOrderEditController implements Initializable {
         OrderItemReposytory orderItemReposytory=new OrderItemReposytory();
         OrderItem orderItem= tableOrderItem.getSelectionModel().getSelectedItem();
         ProductReposytory productReposytory=new ProductReposytory();
-        Product product=productReposytory.getOneProduct(orderItem.getProduct().getProductId());
+        Product product=productReposytory.getOneProduct(orderItem.getProduct().getIdProduct());
         if(product!=null&&orderItem!=null) {
             int currentQuantiy = Integer.parseInt(newQuantityOrderItem.getText());
             if (currentQuantiy > product.getQuantity()) {
@@ -85,9 +85,9 @@ public class AdminOrderEditController implements Initializable {
                 alert.setHeaderText("Brak takiej ilości w magazynie");
                 alert.show();
             } else if (currentQuantiy < orderItem.getQuantity()) {
-                productReposytory.updateProductQuantity(orderItem.getProduct().getProductId(), product.getQuantity() + currentQuantiy);
+                productReposytory.updateProductQuantity(orderItem.getProduct().getIdProduct(), product.getQuantity() + currentQuantiy);
             } else if (currentQuantiy > orderItem.getQuantity()) {
-                productReposytory.updateProductQuantity(orderItem.getProduct().getProductId(), product.getQuantity() - currentQuantiy);
+                productReposytory.updateProductQuantity(orderItem.getProduct().getIdProduct(), product.getQuantity() - currentQuantiy);
             } else if (currentQuantiy == orderItem.getQuantity()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Nie ma potrzeby edytować");
@@ -130,7 +130,7 @@ public class AdminOrderEditController implements Initializable {
     }
     private void loadDateOrder(){
         idOrder.setText(String.valueOf(order.getIdOrder()));
-        idUser.setText(String.valueOf(order.getUser().getId()));
+        idUser.setText(String.valueOf(order.getUser().getIdUser()));
         dateOrder.setText(String.valueOf(order.getDate()));
         statusOrder.setText(order.getStatus());
     }

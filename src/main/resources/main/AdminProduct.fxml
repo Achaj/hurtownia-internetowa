@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minWidth="800.0" prefHeight="550.0" prefWidth="750.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AdminProductController">
+   <children>
+      <Label alignment="CENTER" layoutX="47.0" layoutY="14.0" prefHeight="51.0" prefWidth="677.0" text="Hurtownia Sprzetu Komputerowego" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableProduct" layoutX="47.0" layoutY="120.0" prefHeight="391.0" prefWidth="345.0">
+        <columns>
+            <TableColumn fx:id="idProductTable" prefWidth="40.0" text="Id" />
+            <TableColumn fx:id="type" prefWidth="37.0" text="Typ" />
+          <TableColumn fx:id="producer" prefWidth="70.0" text="Producent" />
+          <TableColumn fx:id="model" prefWidth="62.0" text="Model" />
+            <TableColumn fx:id="quantity" minWidth="0.0" prefWidth="62.0" text="Ilość" />
+            <TableColumn fx:id="price" minWidth="0.0" prefWidth="67.0" text="Cena" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backToMainScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #69b020; -fx-background-radius: 90;" text="Back" />
+      <VBox layoutX="694.0" layoutY="120.0" prefHeight="391.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#showProduct" prefHeight="50.0" prefWidth="100.0" text="Pokaż Szczegóły" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#changePrice" prefHeight="50.0" prefWidth="100.0" text="Zmień cenę">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#changeQuantity" prefHeight="50.0" prefWidth="100.0" text="Zmień Ilość">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="20.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#changeInfo" prefHeight="50.0" prefWidth="100.0" text="Zmień Info" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#addProduct" prefHeight="50.0" prefWidth="100.0" text="Dodaj">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="10.0" layoutY="119.0" mnemonicParsing="false" onMouseClicked="#delateProduct" prefHeight="50.0" prefWidth="100.0" text="Usuń">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="400.0" layoutY="120.0" prefHeight="391.0" prefWidth="260.0">
+         <children>
+            <Label prefHeight="20.0" prefWidth="271.0" text="Id Produktu" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="idProductEdit" editable="false">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="270.0" text="Typ Produktu" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="typeProductEdit" layoutX="10.0" layoutY="27.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="10.0" layoutY="52.0" prefHeight="20.0" prefWidth="267.0" text="Producent" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="producentProductEdit" layoutX="10.0" layoutY="69.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="10.0" layoutY="94.0" prefHeight="20.0" prefWidth="279.0" text="Model" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="modelProductEdit" layoutX="10.0" layoutY="111.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="10.0" layoutY="136.0" prefHeight="20.0" prefWidth="284.0" text="Ilość" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="quantityProductEdit" layoutX="10.0" layoutY="153.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="10.0" layoutY="178.0" prefHeight="20.0" prefWidth="323.0" text="Cena" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="priceProductEdit" layoutX="10.0" layoutY="195.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="10.0" layoutY="220.0" prefHeight="20.0" prefWidth="301.0" text="Info" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="infoProductEdit" prefHeight="122.0" prefWidth="258.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextArea>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

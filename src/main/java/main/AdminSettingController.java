@@ -52,7 +52,7 @@ public class AdminSettingController  implements Initializable {
     public void changeNameAndSeconName(MouseEvent mouseEvent) {
         UserRepository userRepositor = new UserRepository();
         Alert alert = new Alert(Alert.AlertType.NONE);
-        if(userRepositor.updateFirstNameUserById(user.getId(), name.getText(),secondName.getText())==false) {
+        if(userRepositor.updateFirstNameUserById(user.getIdUser(), name.getText(),secondName.getText())==false) {
             alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("Błąd zmiany Imienia i nazwiska!");
             alert.show();
@@ -68,7 +68,7 @@ public class AdminSettingController  implements Initializable {
     public void changeAdres(MouseEvent mouseEvent) {
         UserRepository  userRepositor = new UserRepository();
         Alert alert = new Alert(Alert.AlertType.NONE);
-        if(userRepositor.updateAddresById(user.getId(),zipCode.getText(),city.getText(),street.getText(),numberInStreet.getText())==false) {
+        if(userRepositor.updateAddresById(user.getIdUser(),zipCode.getText(),city.getText(),street.getText(),numberInStreet.getText())==false) {
             alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("Błąd zmiany adresu!");
             alert.show();
@@ -87,7 +87,7 @@ public class AdminSettingController  implements Initializable {
         alert.setHeaderText("Czy na pewno chcesz usunąć swoje konto ?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent()&&result.get()==ButtonType.OK) {
-            if(userRepositor.delateUserById(user.getId())==true) {
+            if(userRepositor.delateUserById(user.getIdUser())==true) {
                 temporayUser.setCurrentUser(null);
                 alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Opracja została wykonana poprawnie");
@@ -114,7 +114,7 @@ public class AdminSettingController  implements Initializable {
             if(newEmail.getText().equals(newEmailConfirm.getText())) {
                 UserRepository userRepositor = new UserRepository();
 
-                if(userRepositor.updateEmailById(user.getId(), newEmail.getText())==false) {
+                if(userRepositor.updateEmailById(user.getIdUser(), newEmail.getText())==false) {
                     alert.setAlertType(Alert.AlertType.WARNING);
                     alert.setContentText("Taki adres email jest już zajęty!");
                     alert.show();

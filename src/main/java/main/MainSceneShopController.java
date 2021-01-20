@@ -76,7 +76,7 @@ public class MainSceneShopController  implements Initializable{
     public void coolerSceneChange(MouseEvent mouseEvent) throws IOException {
        // ProductReposytory productReposytory=new ProductReposytory();
         ProductController centralProfessorUnitControllers=new ProductController();
-        centralProfessorUnitControllers.setTypeQurt("cooler");
+        centralProfessorUnitControllers.setTypeQurt("ram");
         App.setRoot("Product");
     }
     public void setSceneLogin(MouseEvent mouseEvent) throws IOException {

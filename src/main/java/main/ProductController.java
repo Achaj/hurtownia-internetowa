@@ -35,6 +35,7 @@ public class ProductController implements Initializable {
     @FXML
     public TableColumn<Product,String> price;
 
+    @FXML
     private TextField searingModel;
     ObservableList<Product> productObservableList;
     private static String typeQuery;
@@ -114,7 +115,9 @@ public class ProductController implements Initializable {
                     int currentQuntity = selectedProduct.getQuantity();
                     //selectedProduct.setQuantity(1);
                     productBracket.add(selectedProduct);
-                    bracket.setProducts(productBracket);
+                    //bracket.setProducts(productBracket);
+                    //bracket.addProduct(selectedProduct);
+                    TemporaryBracket.products.add(selectedProduct);
                     System.out.println("--->TemporaryBracket");
                     //selectedProduct.setQuantity(currentQuntity-1);
                     bracket.printsTemporaryBracket();

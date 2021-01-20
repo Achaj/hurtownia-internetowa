@@ -50,12 +50,12 @@ public class User implements Serializable {
     public User() {
     }
 
-    public int getId() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setId(int id) {
-        this.idUser = id;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getEmail() {
@@ -151,6 +151,7 @@ public class User implements Serializable {
         return "User{" +
                 "idUser=" + idUser +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", zipCode='" + zipCode + '\'' +

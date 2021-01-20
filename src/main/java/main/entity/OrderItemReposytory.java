@@ -15,13 +15,13 @@ public class OrderItemReposytory {
         if (orderItem.getIdOrderItem() == 0) {
             try {
                 ProductReposytory productReposytory = new ProductReposytory();
-                Product product = productReposytory.findProductById(orderItem.getProduct().getProductId());
+                Product product = productReposytory.findProductById(orderItem.getProduct().getIdProduct());
                 if (product.getQuantity() - orderItem.getQuantity() >= 0) {
                     product.setQuantity(product.getQuantity() - orderItem.getQuantity());
                     entityManager.merge(product);
                     entityManager.persist(orderItem);
                 } else {
-                    System.out.println("Stan produktu w magazynie produktu w magazynie: " + productReposytory.findProductById(orderItem.getProduct().getProductId()).getQuantity() + "  nie mamy " + orderItem.getQuantity() + " sztuk");
+                    System.out.println("Stan produktu w magazynie produktu w magazynie: " + productReposytory.findProductById(orderItem.getProduct().getIdProduct()).getQuantity() + "  nie mamy " + orderItem.getQuantity() + " sztuk");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -66,7 +66,7 @@ public class OrderItemReposytory {
         }
         ProductReposytory productReposytory = new ProductReposytory();
         OrderItem orderItem = findOrderItemById(id);
-        Product product = productReposytory.findProductById(orderItem.getProduct().getProductId());
+        Product product = productReposytory.findProductById(orderItem.getProduct().getIdProduct());
         //JEŚLI ILOŚC SZTUK JEST WIĘKSZA OD POCZĄTKOWEJ
         try {
             if (quantity > orderItem.getQuantity()) {

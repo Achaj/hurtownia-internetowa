@@ -46,23 +46,12 @@ public class Product implements Serializable {
 
     }
 
-    public Product(int idProduct, String type, String producer, String model, String info, int quantity, int price, List<OrderItem> orderItems) {
-        this.idProduct = idProduct;
-        this.type = type;
-        this.producer = producer;
-        this.model = model;
-        this.info = info;
-        this.quantity = quantity;
-        this.price = price;
-        this.orderItems = orderItems;
-    }
-
-    public int getProductId() {
+    public int getIdProduct() {
         return idProduct;
     }
 
-    public void setProductId(int productId) {
-        this.idProduct = productId;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
     public String getType() {
