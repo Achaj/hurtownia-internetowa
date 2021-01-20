@@ -193,7 +193,7 @@ public class UserRepository {
                     for (Order order : orders) {
                         //jeśli zamówienie nie jest anulowane nie zakończone jeszcze
 
-                        if (!order.getStatus().equals("Anulowano")&&!order.getStatus().equals("zakończono")) {
+                        if (!order.getStatus().equals("Anulowano")&&!order.getStatus().equals("Zakończono")) {
                             orderRepository.updateOrderStatus(order.getIdOrder(), "Anulowano"); //ustawia status zamówienia na anulowany
                             orderRepository.closeConnectDB(); //zamykania połączenia do tablli zamówenia
                             OrderItemReposytory orderItemReposytory = new OrderItemReposytory();

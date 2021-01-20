@@ -17,18 +17,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdminOrderController  implements Initializable {
+public class AdminOrderController implements Initializable {
     public TableView<Order> tableOrder;
-    public TableColumn<Order,Integer> idOrderTable;
+    public TableColumn<Order, Integer> idOrderTable;
     public TableColumn<Order, Date> dateColumn;
     public TableColumn<Order, String> statusColumn;
-    public TableColumn<Order,Integer> idUserTable;
+    public TableColumn<Order, Integer> idUserTable;
 
     public TableView<OrderItem> tableOrderItem;
     public TableColumn<OrderItem, Integer> quantity;
-    public TableColumn<OrderItem,Product> product;
+    public TableColumn<OrderItem, Product> product;
     public TextField currentPriceOrder;
-
 
 
     public void back(MouseEvent mouseEvent) throws IOException {
@@ -43,6 +42,7 @@ public class AdminOrderController  implements Initializable {
         OrderRepository orderRepository = new OrderRepository();
         List<Order> orders = orderRepository.getAllOrder();
         if (orders != null) {
+            tableOrder.getItems().clear();
             orderObservableList = FXCollections.observableArrayList();
             orderObservableList.removeAll(orderObservableList);
             orderObservableList.addAll(orders);
@@ -84,19 +84,19 @@ public class AdminOrderController  implements Initializable {
         OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
         orderItems = orderItemReposytory.getAllOrderItemsOnOneOrder(id_order);
         orderItemReposytory.closeConnectDB();
-        int count=0;
+        int count = 0;
         if (orderItems != null) {
             tableOrderItem.getItems().clear();
             orderItemObservableList = FXCollections.observableArrayList();
             orderItemObservableList.removeAll(orderItemObservableList);
             orderItemObservableList.addAll(orderItems);
             tableOrderItem.getItems().addAll(orderItemObservableList);
-            for(OrderItem orderItem:orderItems){
-                count=count+(orderItem.getProduct().getPrice()*orderItem.getQuantity());
+            for (OrderItem orderItem : orderItems) {
+                count = count + (orderItem.getProduct().getPrice() * orderItem.getQuantity());
             }
 
         }
-        currentPriceOrder.setText(count+" zł");
+        currentPriceOrder.setText(count + " zł");
 
     }
 
@@ -104,7 +104,6 @@ public class AdminOrderController  implements Initializable {
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         product.setCellValueFactory(new PropertyValueFactory<>("product"));
     }
-
 
 
     public void canelOrder(MouseEvent mouseEvent) {
@@ -117,7 +116,7 @@ public class AdminOrderController  implements Initializable {
             orderRepository.updateOrderStatus(order.getIdOrder(), "Anulowano");
 
             int quntity = 0;
-            if(orderItems.size()!=0) {
+            if (orderItems != null) {
                 for (OrderItem orderItem : orderItems) {
                     quntity = orderItem.getQuantity();
                     int product_id = orderItem.getProduct().getIdProduct();
@@ -125,9 +124,7 @@ public class AdminOrderController  implements Initializable {
                     productReposytory.updateProductQuantity(product_id, productINdB.getQuantity() + quntity);
                 }
             }
-            orderObservableList.clear();
             loadDateOrder();
-            tableOrder.refresh();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Zamówienie już jest anulowane");
@@ -138,36 +135,34 @@ public class AdminOrderController  implements Initializable {
     public void dellOrder(MouseEvent mouseEvent) {
         //pobraranie zaznaczonego zamówienia
         Order order = tableOrder.getSelectionModel().getSelectedItem();
+        int quntity = 0;
+        if (!order.getStatus().equals("Anulowano") && orderItems != null) {
             ProductReposytory productReposytory = new ProductReposytory();
-            OrderRepository orderRepository = new OrderRepository();
-            OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
-            int quntity = 0;
-            if(!order.getStatus().equals("Anulowano")&&orderItems!=null) {
-                for (OrderItem orderItem : orderItems) {
-                    quntity = orderItem.getQuantity();
-                    int product_id = orderItem.getProduct().getIdProduct();
-                    Product productINdB = productReposytory.getOneProduct(product_id);
-                    productReposytory.updateProductQuantity(product_id, productINdB.getQuantity() + quntity);
-                }
+            for (OrderItem orderItem : orderItems) {
+                quntity = orderItem.getQuantity();
+                int product_id = orderItem.getProduct().getIdProduct();
+                Product productINdB = productReposytory.getOneProduct(product_id);
+                productReposytory.updateProductQuantity(product_id, productINdB.getQuantity() + quntity);
             }
-
-            List<OrderItem> orderItems=orderItemReposytory.getAllOrderItemsOnOneOrder(order.getIdOrder());
-            for (OrderItem item:orderItems){
-                orderItemReposytory.delateOrderItemById(item.getIdOrderItem());
-            }
-            orderRepository.delateOrderById(order.getIdOrder());
-            orderItemReposytory.closeConnectDB();
-            orderRepository.closeConnectDB();
             productReposytory.closeConnectDB();
-            orderItems.clear();
-            orderObservableList.clear();
-            loadDateOrder();
-            tableOrder.refresh();
+        }
+        OrderItemReposytory orderItemReposytory = new OrderItemReposytory();
+        List<OrderItem> orderItems = orderItemReposytory.getAllOrderItemsOnOneOrder(order.getIdOrder());
+        for (OrderItem item : orderItems) {
+            orderItemReposytory.delateOrderItemById(item.getIdOrderItem());
+        }
+        OrderRepository orderRepository = new OrderRepository();
+        orderRepository.delateOrderById(order.getIdOrder());
+        orderItemReposytory.closeConnectDB();
+        orderRepository.closeConnectDB();
+
+        loadDateOrder();
+
     }
 
     public void editOrder(MouseEvent mouseEvent) throws IOException {
-        Order order=tableOrder.getSelectionModel().getSelectedItem();
+        Order order = tableOrder.getSelectionModel().getSelectedItem();
         AdminOrderEditController.setOrder(order);
-                App.setRoot("AdminOrderEdit");
+        App.setRoot("AdminOrderEdit");
     }
 }

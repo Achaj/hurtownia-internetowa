@@ -45,6 +45,7 @@ public class AdminOrderEditController implements Initializable {
             statusChoice.add("Zamówiono");
             statusChoice.add("W trakcie realizacij");
             statusChoice.add("Wysłano");
+            statusChoice.add("Zakończono");
             newStatusOrder.getItems().addAll(statusChoice);
 
         }
@@ -161,7 +162,7 @@ public class AdminOrderEditController implements Initializable {
         orderItems = orderItemReposytory.getAllOrderItemsOnOneOrder(id_order);
         orderItemReposytory.closeConnectDB();
         int count=0;
-        if (orderItems != null) {
+        if (orderItems.size()!=0) {
             tableOrderItem.getItems().clear();
             orderItemObservableList = FXCollections.observableArrayList();
             orderItemObservableList.removeAll(orderItemObservableList);
