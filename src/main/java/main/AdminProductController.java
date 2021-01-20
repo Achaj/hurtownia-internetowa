@@ -148,4 +148,13 @@ public class AdminProductController implements Initializable {
         }
     }
 
+    public void clear(MouseEvent mouseEvent) {
+        idProductEdit.setText("");
+        typeProductEdit.setText("");
+        producentProductEdit.setText("");
+        modelProductEdit.setText("");
+        quantityProductEdit.setText("");
+        priceProductEdit.setText("");
+        infoProductEdit.setText("");
+    }
 }
