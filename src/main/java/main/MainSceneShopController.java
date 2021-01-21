@@ -41,7 +41,7 @@ public class MainSceneShopController  implements Initializable{
     public void harddriveSceneChange(MouseEvent mouseEvent) throws IOException {
        // ProductReposytory productReposytory=new ProductReposytory();
         ProductController centralProfessorUnitControllers=new ProductController();
-        centralProfessorUnitControllers.setTypeQurt("hdd");
+        centralProfessorUnitControllers.setTypeQurt("disk");
         App.setRoot("Product");
     }
 
@@ -69,7 +69,7 @@ public class MainSceneShopController  implements Initializable{
     public void soundSceneChange(MouseEvent mouseEvent) throws IOException {
        // ProductReposytory productReposytory=new ProductReposytory();
         ProductController centralProfessorUnitControllers=new ProductController();
-        centralProfessorUnitControllers.setTypeQurt("soundCard");
+        centralProfessorUnitControllers.setTypeQurt("soundcard");
         App.setRoot("Product");
     }
 
