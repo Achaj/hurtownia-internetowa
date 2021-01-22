@@ -7,7 +7,7 @@
 
 <AnchorPane minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AdminUserEditController">
    <children>
-      <Label alignment="CENTER" layoutX="47.0" layoutY="14.0" prefHeight="51.0" prefWidth="677.0" text="Hurtownia Sprzetu Komputerowego" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="74.0" layoutY="14.0" prefHeight="51.0" prefWidth="677.0" text="Hurtownia Sprzetu Komputerowego" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -42,7 +42,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox layoutX="231.0" layoutY="73.0" prefHeight="530.0" prefWidth="385.0" style="-fx-background-color: #1b4d80; -fx-background-radius: 5;">
+      <VBox layoutX="231.0" layoutY="73.0" prefHeight="530.0" prefWidth="385.0" style="-fx-background-color: #1b4d80; -fx-background-radius: 5;" AnchorPane.bottomAnchor="0.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="17.0" prefWidth="598.0" text="Dane Użytkownika" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>

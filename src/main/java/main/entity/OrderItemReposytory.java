@@ -112,14 +112,12 @@ public class OrderItemReposytory {
         return orderItem;
     }
 
-    public OrderItem updateProductOnOrderId(int idOrderItem, int idProduct) {
+    public OrderItem updateProductOnOrderId(int idOrderItem, Product product) {
         if(!entityTransaction.isActive()) {
             entityTransaction.begin();
         }
         OrderItem orderItem = findOrderItemById(idOrderItem);
         try {
-            ProductReposytory productReposytory = new ProductReposytory();
-            Product product = productReposytory.findProductById(idProduct);
             orderItem.setProduct(product);
             entityManager.merge(orderItem);
             entityTransaction.commit();

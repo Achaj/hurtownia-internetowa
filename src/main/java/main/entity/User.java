@@ -12,23 +12,23 @@ public class User implements Serializable {
     @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
-    @Column(name = "email", nullable = true, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
-    @Column(name = "password", nullable = true)
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "firstName", nullable = true)
+    @Column(name = "firstName", nullable = false)
     private String firstName;
-    @Column(name = "secondName", nullable = true)
+    @Column(name = "secondName", nullable = false)
     private String secondName;
-    @Column(name = "zipCode", nullable = true)
+    @Column(name = "zipCode", nullable = false,length = 8)
     private String zipCode;
-    @Column(name = "city", nullable = true)
+    @Column(name = "city", nullable = false)
     private String city;
-    @Column(name = "street")
+    @Column(name = "street",nullable = false)
     private String street;
-    @Column(name = "numberInStreet", nullable = true)
+    @Column(name = "numberInStreet", nullable = false)
     private String numberInStreet;
-    @Column(name = "phoneNumber")
+    @Column(name = "phoneNumber",nullable = false)
     private String phoneNumber;
     @Column(name = "type_user", nullable = false, columnDefinition = "varchar(255) default 'user'")
     private String typeUser="user";

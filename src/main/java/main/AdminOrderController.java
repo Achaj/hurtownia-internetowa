@@ -136,7 +136,7 @@ public class AdminOrderController implements Initializable {
         //pobraranie zaznaczonego zamówienia
         Order order = tableOrder.getSelectionModel().getSelectedItem();
         int quntity = 0;
-        if (!order.getStatus().equals("Anulowano") && orderItems != null) {
+        if (!order.getStatus().equals("Anulowano") &&!order.getStatus().equals("Zakończono")&& orderItems != null) {
             ProductReposytory productReposytory = new ProductReposytory();
             for (OrderItem orderItem : orderItems) {
                 quntity = orderItem.getQuantity();

@@ -1,7 +1,7 @@
 module main {
     requires javafx.controls;
     requires javafx.fxml;
-     requires java.persistence;
+    requires java.persistence;
     requires java.sql;
     requires com.fasterxml.classmate;
     requires java.xml.bind; 

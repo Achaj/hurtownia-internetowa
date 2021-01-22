@@ -24,7 +24,7 @@ public class Product implements Serializable {
     private String producer;
     @Column(name = "model")
     private String model;
-    @Column(name = "info")
+    @Column(name = "info",length = 1024)
     private String info;
     @Column(name = "quantity")
     private int quantity;

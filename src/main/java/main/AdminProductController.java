@@ -127,7 +127,7 @@ public class AdminProductController implements Initializable {
             if(orderItems!=null){
                 for(OrderItem item:orderItems){
                     if(product.getIdProduct()==item.getProduct().getIdProduct()) {
-                        orderItemReposytory.updateProductOnOrderId(item.getIdOrderItem(), 0);
+                        orderItemReposytory.updateProductOnOrderId(item.getIdOrderItem(), null);
                     }
                 }
             }
