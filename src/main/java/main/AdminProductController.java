@@ -132,7 +132,12 @@ public class AdminProductController implements Initializable {
                 }
             }
             orderItemReposytory.closeConnectDB();
-            productReposytory.delateOrderItemById(product.getIdProduct());
+            if(!productReposytory.delateProduct(product.getIdProduct())){
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Produkt o takim id jest zawart w zamówieniu");
+                alert.setContentText("Usuń pozycję z zamówienia aby usunąc produkt");
+                alert.show();
+            }
             productReposytory.closeConnectDB();
             loadDateProduct();
         }

@@ -131,12 +131,11 @@ public class ProductReposytory {
     }
 
     /* ABY USUNĄC REKORD Z Product MUSIMY PODAC JEGO ID */
-    public boolean delateOrderItemById(int id) {
+    public boolean delateProduct(int id) {
         if(!entityTransaction.isActive()) {
             entityTransaction.begin();
         }
         Product product = findProductById(id);
-        if (entityManager.contains(product)) {
             try {
                 entityManager.remove(product);
                 entityTransaction.commit();
@@ -145,10 +144,6 @@ public class ProductReposytory {
                 entityTransaction.rollback();
                 return false;
             }
-        } else {
-            entityManager.merge(product);
-            return false;
-        }
     }
     public void closeConnectDB(){
         entityManager.close();

@@ -21,7 +21,7 @@ public class OrderItem implements Serializable {
     @Column(name = "quantity_item")
     private int quantity;
     @ManyToOne
-    @JoinColumn(name="id_product",nullable = true)
+    @JoinColumn(name="id_product",nullable = false)
     private Product product;
     @ManyToOne
     @JoinColumn(name = "id_order",nullable = false)
