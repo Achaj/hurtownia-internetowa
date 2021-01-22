@@ -93,18 +93,17 @@ public class ProductController implements Initializable {
     public void backToMainScene(MouseEvent mouseEvent) throws IOException {
         App.setRoot("mainSceneShop");
     }
-
-    List<Product> productBracket =new ArrayList<>();
     public void addToCurrentBasket(MouseEvent mouseEvent) {
         Product  selectedProduct=tableView.getSelectionModel().getSelectedItem();
         Alert a =new Alert(Alert.AlertType.WARNING);
-        boolean duplicateProduct=false;
+
         if (selectedProduct==null){
             a.setHeaderText("Nic nie zaznaczono");
             a.show();
         }else {
-            for (Product p:productBracket){
-                if (selectedProduct.equals(p)){
+            boolean duplicateProduct=false;
+            for (Product p:TemporaryBracket.products){
+                if (p.getIdProduct()==selectedProduct.getIdProduct()){
                     duplicateProduct=true;
                 }
             }
@@ -112,17 +111,9 @@ public class ProductController implements Initializable {
                 if (selectedProduct.getQuantity() != 0) {
                     System.out.println("-->" + selectedProduct.toString() + "-->Bracket");
                     TemporaryBracket bracket = new TemporaryBracket();
-                    int currentQuntity = selectedProduct.getQuantity();
-                    //selectedProduct.setQuantity(1);
-                    productBracket.add(selectedProduct);
-                    //bracket.setProducts(productBracket);
-                    //bracket.addProduct(selectedProduct);
                     TemporaryBracket.products.add(selectedProduct);
                     System.out.println("--->TemporaryBracket");
-                    //selectedProduct.setQuantity(currentQuntity-1);
                     bracket.printsTemporaryBracket();
-
-
                 } else {
                     a.setHeaderText("Brak Pozycji na magazynie");
                     a.show();
