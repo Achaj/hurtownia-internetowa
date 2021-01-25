@@ -14,7 +14,7 @@
   4. Zbudowac aplikacje w mavenie
 ## Sposób użycia:
   Otworzyć klasę App
-##Użyte technologie
+##Użyte technologie:
 1. Java 11LTS
 2. Java FX13
 3. Hiberate core 5.4.27 final
