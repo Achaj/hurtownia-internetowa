@@ -1,6 +1,6 @@
 # Hurtownia intenetowa
 
-#Użyte technologie
+#Użyte technologie\
   Java 11LTS\
   Java FX13\
   Hiberate core 5.4.27 final\
