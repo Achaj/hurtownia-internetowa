@@ -89,22 +89,24 @@ public class AdminSettingController  implements Initializable {
         if(result.isPresent()&&result.get()==ButtonType.OK) {
             if(userRepositor.delateUserById(user.getIdUser())==true) {
                 temporayUser.setCurrentUser(null);
-                alert.setAlertType(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Opracja została wykonana poprawnie");
-                alert.setContentText("Zostajesz przemieszcony na stronę głowną sklepu");
-                alert.show();
+                Alert alert1=new Alert(Alert.AlertType.INFORMATION);
+                alert1.setAlertType(Alert.AlertType.INFORMATION);
+                alert1.setHeaderText("Opracja została wykonana poprawnie");
+                alert1.setContentText("Zostajesz przemieszcony na stronę głowną sklepu");
+                alert1.show();
                 App.setRoot("mainSceneShop");
             }else {
-                alert.setAlertType(Alert.AlertType.WARNING);
-                alert.setHeaderText("Opracja nie została wykonana poprwnie");
-                alert.show();
+                Alert alert2=new Alert(Alert.AlertType.INFORMATION);
+                alert2.setAlertType(Alert.AlertType.WARNING);
+                alert2.setHeaderText("Opracja nie została wykonana poprwnie");
+                alert2.show();
             }
         }else {
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Opracja została anulowana");
             alert.show();
         }
-        // userRepositor.closeConnectDB();
+        userRepositor.closeConnectDB();
     }
 
     public void changeEmail(MouseEvent mouseEvent) {
