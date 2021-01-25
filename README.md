@@ -9,7 +9,7 @@
 4. Autor
 ## Sposób instalacji:
   1. Pobrać link do skopiowania
-  2. Utworzyć nowy projekt Vcs
+  2. Get from VCS and clone repo
   3. Oworzyć src/main/java/main App i ustawić App jako startową klasę
   4. Zbudowac aplikacje w mavenie
 ## Sposób użycia:
@@ -21,7 +21,7 @@
 4. JDBC postgres 42.2.18
 5. Maven
 
-## Autorzy:
+## Autor:
 Jan Stępień
 
 
