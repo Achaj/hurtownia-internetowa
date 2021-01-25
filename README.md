@@ -13,7 +13,7 @@
   3. Oworzyć src/main/java/main App i ustawić App jako startową klasę
   4. Zbudowac aplikacje w mavenie
 ## Sposób użycia:
-  1.Otworzyć klasę App
+  Otworzyć klasę App
 ##Użyte technologie
 1. Java 11LTS
 2. Java FX13
